@@ -1,0 +1,38 @@
+<header>
+  <div class="header-logo">
+    <%= link_to root_path do %>
+      <%= image_tag "hotel-logo.jpg", class: "hotel-logo" %>
+    <% end %>
+  </div>
+  <div class="header-logo">
+    <%= link_to("FACILITY", "/blogs") %>
+  </div>
+  <div class="header-logo">
+    <%= link_to("Smart Lock", "/blogauthors") %>
+  </div>
+  <div class="header-logo">
+    <%= link_to("Contact", "/blogauthors") %>
+  </div>
+  <div class="header-logo">
+    <%= link_to("FAQ", "/blogauthors") %>
+  </div>
+  <div class="header-logo">
+    <% if user_signed_in? %>
+      <p class="user"><%= current_user.name %></p>
+    <% end %>
+  </div>
+  <ul>
+    <% if user_signed_in? %>
+      <li>
+        <%= link_to("LogOut", "/users/sign_out", method: :delete, data: {confirm: "本当にログアウトしますか？"}) %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to("SignUp", "/users/sign_up") %>
+      </li>
+      <li>
+        <%= link_to("Login", "/users/sign_in") %>
+      </li>
+    <% end %>
+  </ul>
+</header>
