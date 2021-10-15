@@ -9,6 +9,7 @@ user = User.new(
   :name => 'staff',
   :email => 'staff@gmail.com',
   :phone => '080-1234-5678',
-  :password => '12345678'
+  :password => '12345678',
+  :staff => true
 )
 user.save!
