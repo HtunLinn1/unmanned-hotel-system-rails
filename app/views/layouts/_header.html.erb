@@ -1,38 +1,55 @@
-<header>
-  <div class="header-logo">
-    <%= link_to root_path do %>
-      <%= image_tag "hotel-logo.jpg", class: "hotel-logo" %>
-    <% end %>
+<nav class="navbar navbar-expand-lg navbar-dark header fixed-top" id="navbar">
+  <div class="container-fluid">
+    <div class="header-logo">
+      <a aria-current="page" href="/" style="color: white;">
+        <%= image_tag "hotel-logo.jpg", class: "hotel-logo" %>
+        7 Stars
+      </a>
+    </div>
+    <div class="header-logo">
+      <% if user_signed_in? %>
+        <p class="user"><%= current_user.name %></p>
+      <% end %>
+    </div>
+    <!-- トグルボタン -->
+    <button class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- リンク一覧 -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#home" style="color: white;">
+            FACILITY
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#reputation" style="color: white;">Smart Lock</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#content" style="color: white;">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#pricing" style="color: white;">FAQ</a>
+        </li>
+          <% if user_signed_in? %>
+            <li class="nav-item pt-2">
+              <%= link_to("LogOut", "/users/sign_out", method: :delete, data: {confirm: "本当にログアウトしますか？"}) %>
+            </li>
+          <% else %>
+            <li class="nav-item pt-2">
+              <%= link_to("SignUp", "/users/sign_up") %>
+              <%= link_to("Login", "/users/sign_in") %>
+            </li>
+          <% end %>
+        </li>
+      </ul>
+    </div>
   </div>
-  <div class="header-logo">
-    <%= link_to("FACILITY", "/blogs") %>
-  </div>
-  <div class="header-logo">
-    <%= link_to("Smart Lock", "/blogauthors") %>
-  </div>
-  <div class="header-logo">
-    <%= link_to("Contact", "/blogauthors") %>
-  </div>
-  <div class="header-logo">
-    <%= link_to("FAQ", "/blogauthors") %>
-  </div>
-  <div class="header-logo">
-    <% if user_signed_in? %>
-      <p class="user"><%= current_user.name %></p>
-    <% end %>
-  </div>
-  <ul>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to("LogOut", "/users/sign_out", method: :delete, data: {confirm: "本当にログアウトしますか？"}) %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to("SignUp", "/users/sign_up") %>
-      </li>
-      <li>
-        <%= link_to("Login", "/users/sign_in") %>
-      </li>
-    <% end %>
-  </ul>
-</header>
+</nav>

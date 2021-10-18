@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_15_033746) do
+ActiveRecord::Schema.define(version: 2021_10_14_160446) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "room_id"
     t.string "credit_no"
     t.integer "person_count"
     t.datetime "start_date"
@@ -25,6 +26,7 @@ ActiveRecord::Schema.define(version: 2021_10_15_033746) do
     t.string "key"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_bookings_on_room_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
@@ -57,6 +59,7 @@ ActiveRecord::Schema.define(version: 2021_10_15_033746) do
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
     t.string "phone", default: "", null: false
+    t.boolean "staff", default: false, null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -67,12 +70,12 @@ ActiveRecord::Schema.define(version: 2021_10_15_033746) do
     t.string "unconfirmed_email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "staff"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookings", "rooms"
   add_foreign_key "bookings", "users"
   add_foreign_key "inquiries", "users"
 end
