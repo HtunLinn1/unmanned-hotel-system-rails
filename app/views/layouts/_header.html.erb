@@ -8,7 +8,7 @@
     </div>
     <div class="header-logo">
       <% if user_signed_in? %>
-        <p class="user"><%= current_user.name %></p>
+        <span class="user"><%= current_user.name %></span>
       <% end %>
     </div>
     <!-- トグルボタン -->
@@ -26,26 +26,26 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="#home" style="color: white;">
-            FACILITY
+            設備案内
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#reputation" style="color: white;">Smart Lock</a>
+          <a class="nav-link" href="#reputation" style="color: white;">スマートロック</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#content" style="color: white;">Contact</a>
+          <a class="nav-link" href="#content" style="color: white;">お問い合わせ</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#pricing" style="color: white;">FAQ</a>
+          <a class="nav-link" href="#pricing" style="color: white;">よくある質問</a>
         </li>
           <% if user_signed_in? %>
             <li class="nav-item pt-2">
-              <%= link_to("LogOut", "/users/sign_out", method: :delete, data: {confirm: "本当にログアウトしますか？"}) %>
+              <%= link_to("ログアウト", "/users/sign_out", method: :delete, data: {confirm: "本当にログアウトしますか？"}) %>
             </li>
           <% else %>
             <li class="nav-item pt-2">
-              <%= link_to("SignUp", "/users/sign_up") %>
-              <%= link_to("Login", "/users/sign_in") %>
+              <%= link_to("アカウント作成", "/users/sign_up") %>
+              <%= link_to("ログイン", "/users/sign_in") %>
             </li>
           <% end %>
         </li>

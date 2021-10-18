@@ -8,8 +8,9 @@
 user = User.new(
   :name => 'staff',
   :email => 'staff@gmail.com',
-  :phone => '080-1234-5678',
+  :phone => '08012345678',
   :password => '12345678',
   :staff => true
 )
+user.skip_confirmation!
 user.save!

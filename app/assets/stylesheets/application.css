@@ -92,6 +92,12 @@ li a {
   border-radius: 10px;
 }
 
+.user {
+  padding: 5px;
+  color: #d5a662;
+  background-color: #fff;
+  border-radius: 10px;
+}
 /* @media screen and (min-height: 516px) {
   footer {
     position: fixed;
