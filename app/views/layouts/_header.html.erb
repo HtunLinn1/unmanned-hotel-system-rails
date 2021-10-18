@@ -1,15 +1,17 @@
 <nav class="navbar navbar-expand-lg navbar-dark header fixed-top" id="navbar">
   <div class="container-fluid">
-    <div class="header-logo">
-      <a aria-current="page" href="/" style="color: white;">
-        <%= image_tag "hotel-logo.jpg", class: "hotel-logo" %>
-        7 Stars
-      </a>
-    </div>
-    <div class="header-logo">
-      <% if user_signed_in? %>
-        <span class="user"><%= current_user.name %></span>
-      <% end %>
+    <div class="d-flex justify-content-start">
+      <div class="header-logo">
+        <a aria-current="page" href="/" style="color: white;">
+          <%= image_tag "hotel-logo.jpg", class: "hotel-logo" %>
+          7 Stars
+        </a>
+      </div>
+      <div class="header-logo pt-1">
+        <% if user_signed_in? %>
+          <span class="user"><%= current_user.name %></span>
+        <% end %>
+      </div>
     </div>
     <!-- トグルボタン -->
     <button class="navbar-toggler"
@@ -38,6 +40,18 @@
         <li class="nav-item">
           <a class="nav-link" href="#pricing" style="color: white;">よくある質問</a>
         </li>
+        <% if user_signed_in? && current_user.staff %>
+          <li class="nav-item">
+            <div class="btn-group pt-1">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Staff
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item fs-6" href="/rooms">部屋作成</a></li>
+              </ul>
+            </div>
+          </li>
+        <% end %>
           <% if user_signed_in? %>
             <li class="nav-item pt-2">
               <%= link_to("ログアウト", "/users/sign_out", method: :delete, data: {confirm: "本当にログアウトしますか？"}) %>

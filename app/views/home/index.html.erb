@@ -32,20 +32,18 @@
         <p class="fs-3">Book now 宿泊のご予約・空室検索</p>
       </div>
     </div>
-    <form action="/search" method="get" accept-charset="UTF-8" class="row d-flex justify-content-center">
+    <form action="/bookings" method="get" accept-charset="UTF-8" id="myform" class="row d-flex justify-content-center">
       <div class="col-12 col-sm-3 datepicker">
         <label for="date">チェックイン</label>
-        <input type="text" name="date" class="start-datepicker form-control" autocomplete="off" placeholder="年/月/日">
-        <i class="bi bi-calendar calendar-icon"></i>
+        <input type="text" name="startdate" class="start-datepicker form-control" id="startdate" autocomplete="off" placeholder="年/月/日">
       </div>
       <div class="col-12 col-sm-3 datepicker">
         <label for="date">チェックアウト</label>
-        <input type="text" name="date" class="end-datepicker form-control" autocomplete="off" placeholder="年/月/日">
-        <i class="bi bi-calendar calendar-icon"></i>
+        <input type="text" name="enddate" class="end-datepicker form-control" id="enddate" autocomplete="off" placeholder="年/月/日">
       </div>
       <div class="col-12 col-sm-2 pt-1">
         <label for="date">人</label>
-        <select class="form-select" name="numadult">
+        <select class="form-select" name="people">
           <option value="1">1人</option>
           <option value="2">2人</option>
           <option value="3">3人</option>
@@ -54,7 +52,7 @@
       </div>
       <div class="row text-center pt-2">
         <div>
-          <input name="commit" type="submit" value="検索" data-disable-with="Search" />
+          <input type="submit" value="検索" onclick="return myFunction()" data-disable-with="Search" />
         </div>
       </div>
     </form>
@@ -92,7 +90,7 @@
   $('.start-datepicker').datepicker({ 
       format: 'yyyy/mm/dd',
       autoclose: true,
-      startDate: start_date
+      startDate: start_date,
   });
 
   $('.end-datepicker').datepicker({ 
@@ -100,4 +98,23 @@
       autoclose: true,
       startDate: end_date
   });
+
+  function myFunction() {
+    let start_date = document.getElementById("startdate").value
+    let end_date = document.getElementById("enddate").value
+    if (!start_date) {
+      alert("チェックインを選択してください。")
+      return false;
+    }
+
+    if (!end_date) {
+      alert("チェックアウンを選択してください。")
+      return false;
+    }
+
+    if (start_date > end_date) {
+      alert("選択は誤っています。")
+      return false;
+    }
+  }
 </script>
