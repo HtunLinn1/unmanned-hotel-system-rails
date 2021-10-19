@@ -32,17 +32,41 @@ ja:
               too_long: "は%{count}文字以下に設定して下さい。"
               invalid: "は有効でありません。"
               confirmation: "が内容とあっていません。"
+        room:
+          attributes:
+            room_type:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません。"
+            room_no:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません。"
+            price:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません。"
+            limit_person:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません。"
+            image:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません。"
     attributes:
       user:
         current_password: "現在のパスワード"
-        name: 名前
+        name: "名前"
         email: "メールアドレス"
         password: "パスワード"
         phone: "電話番号"
         password_confirmation: "確認用パスワード"
         remember_me: "次回から自動的にログイン"
+      room:
+        room_type: "部屋タイプ"
+        room_no: "部屋番号"
+        price: "価額"
+        limit_person: "定員"
+        image: "写真"
     models:
       user: "ユーザ"
+      room: "部屋"
   devise:
     confirmations:
       new:

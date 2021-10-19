@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_18_013637) do
+ActiveRecord::Schema.define(version: 2021_10_18_141753) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer "user_id"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2021_10_18_013637) do
     t.integer "limit_person"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image"
   end
 
   create_table "users", force: :cascade do |t|

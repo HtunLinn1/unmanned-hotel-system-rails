@@ -1,0 +1,46 @@
+<div class="container-fluid" style="background-color: #f0f8ff; padding-bottom: 320px;">
+  <div class="container">
+    <div class="row" style="padding-top: 90px;">
+      <div class="col-12 d-flex justify-content-center">
+        <h2>部屋</h2>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <% if @room %>
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center">
+        <p><b>タイプ : </b><%= @room.room_type %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center">
+        <p><b>部屋番号 : </b><%= @room.room_no %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center">
+        <p><b>価額 : </b><%= @room.price %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center">
+        <p><b>定員 : </b><%= @room.limit_person %></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center pb-2">
+        <%= image_tag @room.image.url, class: "room-show-img" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center">
+        <% if user_signed_in? && current_user.staff %>
+          <%= link_to("Update", "/rooms/#{@room.id}/edit") %> &nbsp;&nbsp;&nbsp;
+          <%= link_to("Delete", "/rooms/#{@room.id}", method: :delete, data: {confirm: "sure delete？"}) %>&nbsp;&nbsp;&nbsp;
+        <% end %>
+        <%= link_to("Rooms", "/rooms", method: :get) %>
+      </div>
+    </div>
+  <% end %>
+</div>

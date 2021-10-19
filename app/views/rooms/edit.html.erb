@@ -1,0 +1,74 @@
+<div class="container-fluid" style="background-color: #f0f8ff; padding-bottom: 148px;">
+  <div class="container">
+    <div class="row" style="padding-top: 90px;">
+      <div class="col-12 d-flex justify-content-center">
+        <h2><%= @room.room_no %>部屋更新</h2>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <% if @room %>
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center">
+        <%= form_for(@room, html: { multipart: true }) do |f| %>
+          <div>
+            <%= f.label :room_no, "部屋番号" %>
+            <% if !@room.errors.has_key?(:room_no) %>
+              <br>
+            <% end %>
+            <%= f.number_field :room_no, min: 1 %>
+            <div class="text-danger">
+              <%= @room.errors.full_messages_for(:room_no).join(', ') if @room.errors.has_key?(:room_no) %>
+            </div>
+          </div>
+          <div>
+            <%= f.label :room_type, "タイプ" %>
+            <% if !@room.errors.has_key?(:room_type) %>
+              <br>
+            <% end %>
+            <%= f.select :room_type, ['シングルルーム', 'ツインルーム'], {}, {class: 'hoge', id: 'hogehoge'} %>
+            <div class="text-danger">
+              <%= @room.errors.full_messages_for(:room_type).join(', ') if @room.errors.has_key?(:room_type) %>
+            </div>
+          </div>
+          <div>
+            <%= f.label :limit_person, "定員" %>
+            <% if !@room.errors.has_key?(:limit_person) %>
+              <br>
+            <% end %>
+            <%= f.number_field :limit_person, min: 1 %>
+            <div class="text-danger">
+              <%= @room.errors.full_messages_for(:limit_person).join(', ') if @room.errors.has_key?(:limit_person) %>
+            </div>
+          </div>
+          <div>
+            <%= f.label :price, "価額" %>
+            <% if !@room.errors.has_key?(:price) %>
+              <br>
+            <% end %>
+            <%= f.number_field :price, min: 1 %>
+            <div class="text-danger">
+              <%= @room.errors.full_messages_for(:price).join(', ') if @room.errors.has_key?(:price) %>
+            </div>
+          </div>
+          <div class="pt-3 pb-3">
+            <%= image_tag @room.image.url, class: "room-show-img" %>
+          </div>
+          <div>
+            <%= f.label :image, "写真" %>
+            <% if !@room.errors.has_key?(:image) %>
+              <br>
+            <% end %>
+            <%= f.file_field :image %>
+            <div class="text-danger">
+              <%= @room.errors.full_messages_for(:image).join(', ') if @room.errors.has_key?(:image) %>
+            </div>
+          </div>
+          <div class="text-center pt-4">
+            <%= f.submit %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

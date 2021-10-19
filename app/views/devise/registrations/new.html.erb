@@ -1,4 +1,4 @@
-<div class="container-fluid pb-5" style="background-color: #f0f8ff;">
+<div class="container-fluid" style="background-color: #f0f8ff; padding-bottom: 90px;">
   <div class="row" style="padding-top: 100px;">
     <div class="col-12 d-flex justify-content-center">
       <h2>アカウント作成</h2>
@@ -10,12 +10,18 @@
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <div class="field pb-1">
-          <%= f.label :name %><br />
+          <%= f.label :name %>
+          <% if !@user.errors.has_key?(:name) %>
+            <br>
+          <% end %>
           <%= f.text_field :name, autofocus: true %>
         </div>
 
         <div class="field pb-1">
-          <%= f.label :email %><br />
+          <%= f.label :email %>
+          <% if !@user.errors.has_key?(:email) %>
+            <br>
+          <% end %>
           <%= f.email_field :email, autocomplete: "email" %>
         </div>
 
@@ -23,17 +29,26 @@
           <%= f.label :password %>
           <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
-          <% end %><br />
+          <% end %>
+          <% if !@user.errors.has_key?(:password) %>
+            <br>
+          <% end %>
           <%= f.password_field :password, autocomplete: "new-password" %>
         </div>
 
         <div class="field pb-1">
-          <%= f.label :password_confirmation %><br />
+          <%= f.label :password_confirmation %>
+          <% if !@user.errors.has_key?(:password_confirmation) %>
+            <br>
+          <% end %>
           <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
         </div>
 
         <div class="field pb-1">
-          <%= f.label :phone %><br />
+          <%= f.label :phone %>
+          <% if !@user.errors.has_key?(:phone) %>
+            <br>
+          <% end %>
           <%= f.text_field :phone, autocomplete: "phone" %>
         </div>
 
@@ -41,13 +56,13 @@
           <%= f.hidden_field :staff, id: :staff_checkbox,:as => :boolean%>
         </div>
 
-        <div class="actions pb-1">
+        <div class="actions pb-1 text-center">
           <%= f.submit "Sign up" %>
         </div>
       <% end %>
     </div>
   </div>
-</div>
-<div class="d-flex justify-content-center pb-4">
-  <%= render "devise/shared/links" %>
+  <div class="d-flex justify-content-center">
+    <%= render "devise/shared/links" %>
+  </div>
 </div>

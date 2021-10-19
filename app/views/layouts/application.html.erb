@@ -19,10 +19,16 @@
   <body>
     <%= render 'layouts/header' %>
     <% if notice %>
-      <p class="text-success" style="padding-top: 80px;"><%= notice %></p>
+      <div class="alert-success pb-3" style="padding-top: 80px;">
+        <%= notice %>
+        <span class="closebtn float-end" onclick="this.parentElement.style.display='none';">&times;</span>
+      </div>
     <% end %>
     <% if alert %>
-      <p class="text-danger" style="padding-top: 80px;"><%= alert %></p>
+      <div class="alert-danger pb-3" style="padding-top: 80px;">
+        <%= alert %>
+        <span class="closebtn float-end" onclick="this.parentElement.style.display='none';">&times;</span>
+      </div>
     <% end %>
     <%= yield %>
     <%= render 'layouts/footer' %>
