@@ -74,9 +74,18 @@ class BookingsController < ApplicationController
   def paid
     key_no = rand(1000..9999)
     key_no = key_no.to_s + '*'
-    paid = Booking.where(id:params[:id]).update_all(paied:true, key:key_no)
-    if paid
+    booking_id = params[:id]
+    booking_update = Booking.where(id:booking_id).update_all(paied:true, key:key_no)
+
+    booking = Booking.find_by_id(booking_id)
+    cus_name = booking.user.name
+    cus_email = booking.user.email
+    staff_email = current_user.email
+    key_no = key_no
+
+    if booking_update
       flash[:notice] = "支払い成功！"
+      mail_deliever = PaymentMailer.payment(cus_name, cus_email, staff_email, key_no).deliver_now
       redirect_to("/bookings")
     else
       flash[:alert] = "支払い失敗"
