@@ -9,5 +9,8 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
   resources :bookings
+  patch '/bookings/:id/paid', to: 'bookings#paid'
+  patch '/bookings/:id/cancel', to: 'bookings#cancel'
+  get '/bookings/history', to: 'bookings#history'
   resources :rooms
 end

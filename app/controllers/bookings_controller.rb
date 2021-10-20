@@ -1,8 +1,18 @@
 require 'date'
 
 class BookingsController < ApplicationController
+  before_action :authenticate_user!
   def index
-    @booking = "booking"
+    if current_user.staff
+      @bookings = Booking.where("end_date >= ?", Date.today).page(params[:page]).per(5).order('start_date ASC')
+    else
+      user = User.find_by_id(current_user.id)
+      @bookings = user.bookings.page(params[:page]).per(5).order('start_date ASC')
+    end
+  end
+
+  def show
+    @bookings = Booking.where("end_date < ?", Date.today).page(params[:page]).per(5).order('start_date ASC')
   end
 
   def new
@@ -30,11 +40,57 @@ class BookingsController < ApplicationController
     @booking.paied = false
     @booking.cancle = false
     @booking.packing = false
-    @booking.key = ''
+    @booking.key = '*****'
     if @booking.save
+      flash[:notice] = "予約成功しました!"
       redirect_to("/bookings")
     else
+      flash[:alert] = "予約失敗しました!"
       render("/bookings/new")
+    end
+  end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    flash[:notice] = "成功しました!"
+    redirect_to bookings_url
+  end
+
+  def edit
+    @booking = Booking.find(params[:id])
+  end
+
+  def update
+    @booking = Booking.find(params[:id])
+    if @booking.update(booking_params)
+      flash[:notice] = "更新成功！"
+      redirect_to("/bookings")
+    else
+      render("bookings/edit")
+    end
+  end
+
+  def paid
+    key_no = rand(1000..9999)
+    key_no = key_no.to_s + '*'
+    paid = Booking.where(id:params[:id]).update_all(paied:true, key:key_no)
+    if paid
+      flash[:notice] = "支払い成功！"
+      redirect_to("/bookings")
+    else
+      flash[:alert] = "支払い失敗"
+      redirect_to("/bookings")
+    end
+  end
+
+  def cancel
+    cancel = Booking.where(id:params[:id]).update_all(cancle:true)
+    if cancel
+      redirect_to("/bookings")
+    else
+      flash[:alert] = "キャンセル失敗"
+      redirect_to("/bookings")
     end
   end
 

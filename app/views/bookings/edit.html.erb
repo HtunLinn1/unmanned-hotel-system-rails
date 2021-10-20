@@ -1,0 +1,29 @@
+<div class="container-fluid" style="background-color: #f0f8ff; padding-bottom: 390px;">
+  <div class="container">
+    <div class="row" style="padding-top: 90px;">
+      <div class="col-12 d-flex justify-content-center">
+        <h2>予約更新</h2>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 d-flex justify-content-center">
+      <%= form_for(@booking, local: true) do |f| %>
+        <% @booking.errors.full_messages_for(:credit_no).each do |message| %>
+          <p class="text-danger"><%= message %></p>
+        <% end %>
+        <div>
+          <%= f.label :credit_no, "クレジット番号" %>
+          <% if !@booking.errors.has_key?(:credit_no) %>
+            <br>
+          <% end %>
+          <%= f.number_field :credit_no, min: 1 %>
+        </div>
+        <div class="text-center pt-4">
+          <%= f.submit %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

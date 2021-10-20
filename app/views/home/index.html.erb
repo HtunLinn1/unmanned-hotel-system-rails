@@ -1,3 +1,15 @@
+<% if notice %>
+  <div class="alert-success pb-3" style="padding-top: 80px;">
+    <%= notice %>
+    <span class="closebtn float-end" onclick="this.parentElement.style.display='none';">&times;</span>
+  </div>
+<% end %>
+<% if alert %>
+  <div class="alert-danger pb-3" style="padding-top: 80px;">
+    <%= alert %>
+    <span class="closebtn float-end" onclick="this.parentElement.style.display='none';">&times;</span>
+  </div>
+<% end %>
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -25,41 +37,43 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-<div class="d-flex justify-content-center booking-date pt-3 pb-4">
-  <div class="text-center mx-5">
-    <div class="row">
-      <div class="col-12 text-center">
-        <p class="fs-3">Book now 宿泊のご予約・空室検索</p>
-      </div>
-    </div>
-    <form action="/rooms" method="get" accept-charset="UTF-8" id="myform" class="row d-flex justify-content-center">
-      <div class="col-12 col-sm-3 datepicker">
-        <label for="date">チェックイン</label>
-        <input type="text" name="startdate" class="start-datepicker form-control" id="startdate" autocomplete="off" placeholder="年/月/日">
-      </div>
-      <div class="col-12 col-sm-3 datepicker">
-        <label for="date">チェックアウト</label>
-        <input type="text" name="enddate" class="end-datepicker form-control" id="enddate" autocomplete="off" placeholder="年/月/日">
-      </div>
-      <div class="col-12 col-sm-2 pt-1">
-        <label for="date">人</label>
-        <select class="form-select" name="people">
-          <option value="1">1人</option>
-          <option value="2">2人</option>
-          <option value="3">3人</option>
-          <option value="4">4人</option>
-          <option value="4">5人</option>
-          <option value="4">6人</option>
-        </select>
-      </div>
-      <div class="row text-center pt-2">
-        <div>
-          <input type="submit" value="検索" onclick="return myFunction()" data-disable-with="Search" />
+<% if !current_user.staff %>
+  <div class="d-flex justify-content-center booking-date pt-3 pb-4">
+    <div class="text-center mx-5">
+      <div class="row">
+        <div class="col-12 text-center">
+          <p class="fs-3">Book now 宿泊のご予約・空室検索</p>
         </div>
       </div>
-    </form>
+      <form action="/rooms" method="get" accept-charset="UTF-8" id="myform" class="row d-flex justify-content-center">
+        <div class="col-12 col-sm-3 datepicker">
+          <label for="date">チェックイン</label>
+          <input type="text" name="startdate" class="start-datepicker form-control" id="startdate" autocomplete="off" placeholder="年/月/日">
+        </div>
+        <div class="col-12 col-sm-3 datepicker">
+          <label for="date">チェックアウト</label>
+          <input type="text" name="enddate" class="end-datepicker form-control" id="enddate" autocomplete="off" placeholder="年/月/日">
+        </div>
+        <div class="col-12 col-sm-2 pt-1">
+          <label for="date">人</label>
+          <select class="form-select" name="people">
+            <option value="1">1人</option>
+            <option value="2">2人</option>
+            <option value="3">3人</option>
+            <option value="4">4人</option>
+            <option value="4">5人</option>
+            <option value="4">6人</option>
+          </select>
+        </div>
+        <div class="row text-center pt-2">
+          <div>
+            <input type="submit" value="検索" onclick="return myFunction()" data-disable-with="Search" />
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
+<% end %>
 <div class="pt-5 pb-5" style="background-color: #f4ebdf;">
   <div class="row text-center">
     <div>

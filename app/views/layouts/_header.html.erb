@@ -42,17 +42,30 @@
         </li>
         <% if user_signed_in? && current_user.staff %>
           <li class="nav-item">
-            <div class="btn-group pt-1">
-              <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="dropdown pt-1">
+              <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                 管理
-              </button>
-              <ul class="dropdown-menu">
-                <a class="dropdown-item fs-6" href="/rooms">部屋</a>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li>
+                  <a class="dropdown-item fs-6" href="/rooms">部屋</a>
+                </li>
+                <li>
+                  <a class="dropdown-item fs-6" href="/bookings">予約リスト</a>
+                </li>
+                <li>
+                  <a class="dropdown-item fs-6" href="/bookings/history">予約履歴</a>
+                </li>
               </ul>
             </div>
           </li>
         <% end %>
           <% if user_signed_in? %>
+            <% if !current_user.staff %>
+              <li class="nav-item">
+                <a class="nav-link" href="/bookings" style="color: white;">予約リスト</a>
+              </li>
+            <% end %>
             <li class="nav-item pt-2">
               <%= link_to("ログアウト", "/users/sign_out", method: :delete, data: {confirm: "本当にログアウトしますか？"}) %>
             </li>

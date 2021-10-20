@@ -1,0 +1,47 @@
+<div class="container-fluid" style="background-color: #f0f8ff; padding-bottom: 450px; padding-top: 80px;">
+  <div class="row">
+    <div class="col-12 d-flex justify-content-center">
+      <p class="fs-3">予約履歴</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">名前</th>
+              <th scope="col">チャックイン</th>
+              <th scope="col">チャックアウト</th>
+              <th scope="col">人</th>
+              <th scope="col">部屋番号</th>
+              <th scope="col">タイプ</th>
+              <th scope="col">価額</th>
+              <th scope="col">合計金額</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @bookings.each do |booking| %>
+                <tr>
+                  <th scope="row"><%= booking.user.name %></th>
+                  <td><%= booking.start_date.strftime("%Y-%m-%d") %> 16:00</td>
+                  <td><%= booking.end_date.strftime("%Y-%m-%d") %> 11:00</td>
+                  <td><%= booking.person_count %></td>
+                  <td><%= booking.room.room_no %></td>
+                  <td><%= booking.room.room_type %></td>
+                  <td><%= booking.room.price %></td>
+                  <td><%= booking.total_amount %></td>
+                </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= paginate @bookings %>
+      </div>
+    </div>
+    <div class="row pt-3">
+      <div class="col-12 text-start">
+        <%= link_to("ホーム", root_path, class: 'btn btn-primary', method: :get) %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,13 +1,34 @@
-<div class="container-fluid" style="background-color: #f0f8ff; padding-bottom: 159px;">
+<div class="container-fluid" style="background-color: #f0f8ff; padding-bottom: 159px; padding-top: 90px;">
   <div class="container">
-
-    <div class="fs-3" style="padding-top: 80px;">シングルルーム</div>
+    <% if notice %>
+      <div class="alert-success p-3">
+        <%= notice %>
+        <span class="closebtn float-end" onclick="this.parentElement.style.display='none';">&times;</span>
+      </div>
+    <% end %>
+    <% if alert %>
+      <div class="alert-danger pb-3 pt-3">
+        <%= alert %>
+        <span class="closebtn float-end" onclick="this.parentElement.style.display='none';">&times;</span>
+      </div>
+    <% end %>
+    <div class="fs-3">シングルルーム</div>
     <hr>
     <div class="row">
       <% @rooms.each do |room| %>
         <% if room.room_type == 'シングルルーム' %>
           <div class="col-12 col-md-3 text-center">
-            <% if (@booking && room.limit_person >= @people) || !@booking %>
+            <% if @booking && room.limit_person < @people || @booking && @booked_roomids.include?(room.id) %>
+              <div class="card" style="width: 20rem; color: red;">
+                <%= image_tag room.image.url, class: "card-img-top room-index-img", disable: "disabled", alt: "room" %>
+              
+                <div class="card-body">
+                  <h5 class="card-title"><%= room.room_no %></h5>
+                  <div class="card-text"><%= room.price %>円</div>
+                  <div class="card-text"><%= room.limit_person %>人</div>
+                </div>
+              </div>
+            <% else %>
               <div class="card" style="width: 20rem;">
                 <% if @booking %>
                   <%= link_to new_booking_path(:startdate => @startdate, :enddate => @enddate, :people => @people, :room_id => room.id) do %>
@@ -18,16 +39,6 @@
                     <%= image_tag room.image.url, class: "card-img-top room-index-img", alt: "room" %>
                   <% end %>
                 <% end %>
-                <div class="card-body">
-                  <h5 class="card-title"><%= room.room_no %></h5>
-                  <div class="card-text"><%= room.price %>円</div>
-                  <div class="card-text"><%= room.limit_person %>人</div>
-                </div>
-              </div>
-            <% else %>
-              <div class="card" style="width: 20rem; color: red;">
-                <%= image_tag room.image.url, class: "card-img-top room-index-img", disable: "disabled", alt: "room" %>
-              
                 <div class="card-body">
                   <h5 class="card-title"><%= room.room_no %></h5>
                   <div class="card-text"><%= room.price %>円</div>
@@ -46,7 +57,17 @@
       <% @rooms.each do |room| %>
         <% if room.room_type == 'ツインルーム' %>
           <div class="col-12 col-md-3 text-center">
-            <% if (@booking && room.limit_person >= @people) || !@booking %>
+            <% if @booking && room.limit_person < @people || @booking && @booked_roomids.include?(room.id) %>
+              <div class="card" style="width: 20rem; color: red;">
+                <%= image_tag room.image.url, class: "card-img-top room-index-img", disable: "disabled", alt: "room" %>
+              
+                <div class="card-body">
+                  <h5 class="card-title"><%= room.room_no %></h5>
+                  <div class="card-text"><%= room.price %>円</div>
+                  <div class="card-text"><%= room.limit_person %>人</div>
+                </div>
+              </div>
+            <% else %>
               <div class="card" style="width: 20rem;">
                 <% if @booking %>
                   <%= link_to new_booking_path(:startdate => @startdate, :enddate => @enddate, :people => @people, :room_id => room.id) do %>
@@ -57,16 +78,6 @@
                     <%= image_tag room.image.url, class: "card-img-top room-index-img", alt: "room" %>
                   <% end %>
                 <% end %>
-                <div class="card-body">
-                  <h5 class="card-title"><%= room.room_no %></h5>
-                  <div class="card-text"><%= room.price %>円</div>
-                  <div class="card-text"><%= room.limit_person %>人</div>
-                </div>
-              </div>
-            <% else %>
-              <div class="card" style="width: 20rem; color: red;">
-                <%= image_tag room.image.url, class: "card-img-top room-index-img", disable: "disabled", alt: "room" %>
-              
                 <div class="card-body">
                   <h5 class="card-title"><%= room.room_no %></h5>
                   <div class="card-text"><%= room.price %>円</div>
@@ -85,7 +96,17 @@
       <% @rooms.each do |room| %>
         <% if room.room_type == 'デラックスツインルーム' %>
           <div class="col-12 col-md-3 text-center">
-            <% if (@booking && room.limit_person >= @people) || !@booking %>
+            <% if @booking && room.limit_person < @people || @booking && @booked_roomids.include?(room.id) %>
+              <div class="card" style="width: 20rem; color: red;">
+                <%= image_tag room.image.url, class: "card-img-top room-index-img", disable: "disabled", alt: "room" %>
+              
+                <div class="card-body">
+                  <h5 class="card-title"><%= room.room_no %></h5>
+                  <div class="card-text"><%= room.price %>円</div>
+                  <div class="card-text"><%= room.limit_person %>人</div>
+                </div>
+              </div>
+            <% else %>
               <div class="card" style="width: 20rem;">
                 <% if @booking %>
                   <%= link_to new_booking_path(:startdate => @startdate, :enddate => @enddate, :people => @people, :room_id => room.id) do %>
@@ -96,16 +117,6 @@
                     <%= image_tag room.image.url, class: "card-img-top room-index-img", alt: "room" %>
                   <% end %>
                 <% end %>
-                <div class="card-body">
-                  <h5 class="card-title"><%= room.room_no %></h5>
-                  <div class="card-text"><%= room.price %>円</div>
-                  <div class="card-text"><%= room.limit_person %>人</div>
-                </div>
-              </div>
-            <% else %>
-              <div class="card" style="width: 20rem; color: red;">
-                <%= image_tag room.image.url, class: "card-img-top room-index-img", disable: "disabled", alt: "room" %>
-              
                 <div class="card-body">
                   <h5 class="card-title"><%= room.room_no %></h5>
                   <div class="card-text"><%= room.price %>円</div>
@@ -124,7 +135,17 @@
       <% @rooms.each do |room| %>
         <% if room.room_type == 'スィートルーム' %>
           <div class="col-12 col-md-3 text-center">
-            <% if (@booking && room.limit_person >= @people) || !@booking %>
+            <% if @booking && room.limit_person < @people || @booking && @booked_roomids.include?(room.id) %>
+              <div class="card" style="width: 20rem; color: red;">
+                <%= image_tag room.image.url, class: "card-img-top room-index-img", disable: "disabled", alt: "room" %>
+              
+                <div class="card-body">
+                  <h5 class="card-title"><%= room.room_no %></h5>
+                  <div class="card-text"><%= room.price %>円</div>
+                  <div class="card-text"><%= room.limit_person %>人</div>
+                </div>
+              </div>
+            <% else %>
               <div class="card" style="width: 20rem;">
                 <% if @booking %>
                   <%= link_to new_booking_path(:startdate => @startdate, :enddate => @enddate, :people => @people, :room_id => room.id) do %>
@@ -135,16 +156,6 @@
                     <%= image_tag room.image.url, class: "card-img-top room-index-img", alt: "room" %>
                   <% end %>
                 <% end %>
-                <div class="card-body">
-                  <h5 class="card-title"><%= room.room_no %></h5>
-                  <div class="card-text"><%= room.price %>円</div>
-                  <div class="card-text"><%= room.limit_person %>人</div>
-                </div>
-              </div>
-            <% else %>
-              <div class="card" style="width: 20rem; color: red;">
-                <%= image_tag room.image.url, class: "card-img-top room-index-img", disable: "disabled", alt: "room" %>
-              
                 <div class="card-body">
                   <h5 class="card-title"><%= room.room_no %></h5>
                   <div class="card-text"><%= room.price %>円</div>

@@ -5,12 +5,23 @@ class RoomsController < ApplicationController
   end
 
   def index
-    @rooms = Room.all
+    @booked_roomids = []
+    @rooms = Room.all.order('room_no ASC')
     if params[:startdate] && params[:enddate]
       @booking = true
       @startdate = params[:startdate]
       @enddate = params[:enddate]
       @people = params[:people].to_i
+
+      @rooms.each do |room|
+        room.bookings.each do |booking|
+          if (booking.start_date <= @startdate && @startdate <= booking.end_date) ||
+             (booking.start_date <= @enddate && @enddate <= booking.end_date) ||
+             (@startdate <= booking.start_date && booking.end_date <= @enddate  )
+            @booked_roomids << room.id
+          end
+        end
+      end
     else
       @booking = false
     end
@@ -23,8 +34,10 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
     if @room.save
+      flash.now[:notice] = "作成成功！"
       redirect_to("/rooms/#{@room.id}")
     else
+      flash.now[:notice] = "更新失敗！"
       render("rooms/new")
     end
   end
@@ -47,6 +60,7 @@ class RoomsController < ApplicationController
   def update
     @room = Room.find(params[:id])
     if @room.update(room_params)
+      flash.now[:notice] = "更新成功！"
       redirect_to("/rooms/#{@room.id}")
     else
       flash.now[:alert] = "更新失敗！"
