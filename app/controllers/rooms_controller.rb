@@ -6,6 +6,14 @@ class RoomsController < ApplicationController
 
   def index
     @rooms = Room.all
+    if params[:startdate] && params[:enddate]
+      @booking = true
+      @startdate = params[:startdate]
+      @enddate = params[:enddate]
+      @people = params[:people].to_i
+    else
+      @booking = false
+    end
   end
 
   def new

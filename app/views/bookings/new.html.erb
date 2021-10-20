@@ -1,0 +1,80 @@
+<div class="container-fluid" style="background-color: #f0f8ff; padding-bottom: 95px; padding-top: 80px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-evenly">
+        <div>
+          <div class="fs-3">チャックイン</div>
+          <p class="pt-2"><%= @startdate %> 16:00</p>
+        </div>
+        <div>
+          <div class="fs-3">チャックアウト</div>
+          <p class="pt-2"><%= @enddate %> 11:00</p>
+        </div>
+        <div>
+          <div class="fs-3">人</div>
+          <p class="pt-2"><%= @people %>人</p>
+        </div>
+        <div>
+          <div class="fs-3">部屋</div>
+          <p class="pt-2"><%= @room.room_no %></p>
+        </div>
+        <div>
+          <div class="fs-3">タイプ</div>
+          <p class="pt-2"><%= @room.room_type %></p>
+        </div>
+        <div>
+          <div class="fs-3">価額</div>
+          <p class="pt-2"><%= @room.price %>円</p>
+        </div>
+        <div>
+          <div class="fs-3">合計金額</div>
+          <p class="pt-2"><%= @total_amount %>円</p>
+        </div>
+      </div>
+    </div>
+    <div class="row pt-5">
+      <div class="col-12 d-flex justify-content-center">
+        <p class="fs-5 text-danger">内容を確認して予約してください。</p>
+      </div>
+    </div>
+    <div class="row pt-2">
+      <div class="col-12 d-flex justify-content-center">
+        <%= form_with(model: @booking, local: true) do |f| %>
+          <div>
+           <% @booking.errors.full_messages_for(:credit_no).each do |message| %>
+              <p class="text-danger"><%= message %></p>
+            <% end %>
+            <%= f.label :credit_no, "クレジット番号", class: "fs-5" %>
+            <% if !@booking.errors.has_key?(:credit_no) %>
+              <br>
+            <% end %>
+            <%= f.number_field :credit_no, placeholder: "クレジット番号を入力してください", min: 1 %>
+          </div>
+
+          <%= f.hidden_field :room_id, value: @room.id %>
+          <%= f.hidden_field :person_count, value: @people %>
+          <%= f.hidden_field :end_date, value: @enddate %>
+          <%= f.hidden_field :start_date, value: @startdate %>
+          <%= f.hidden_field :total_amount, value: @total_amount %>
+          
+          <div class="text-center pt-4">
+            <%= f.submit %>
+            <div class="pt-3">
+              <%= link_to rooms_path(:startdate => @startdate, :enddate => @enddate, :people => @people) do %>
+                部屋を変える
+              <% end %>
+            </div>
+            <div class="pt-3">
+              <%= link_to("日付と人数を変える", root_path, method: :get) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row pt-5">
+      <div class="col-12 d-flex justify-content-center">
+        <p class="fs-5 text-danger">クレジットカードがない場合、080-1234-5678をかけて予約してください。</p>
+      </div>
+    </div>
+  </div>
+</div>
