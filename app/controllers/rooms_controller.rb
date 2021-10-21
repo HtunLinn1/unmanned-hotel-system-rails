@@ -68,12 +68,12 @@ class RoomsController < ApplicationController
     end
   end
 
-  def staff_check
-    redirect_to root_path unless current_user.staff
-    flash[:notice] = "ホテルの社員だけできる！" unless current_user.staff
-  end
-
   private
+    def staff_check
+      redirect_to root_path unless current_user.staff
+      flash[:notice] = "ホテルの社員だけできる！" unless current_user.staff
+    end
+
     def room_params
       params.require(:room).permit(:room_type, :room_no, :price, :limit_person, :image)
     end

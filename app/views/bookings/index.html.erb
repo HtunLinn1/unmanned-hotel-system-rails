@@ -23,6 +23,7 @@
           <thead>
             <tr>
               <th scope="col">名前</th>
+              <th scope="col">電話番号</th>
               <th scope="col">チャックイン</th>
               <th scope="col">チャックアウト</th>
               <th scope="col">人</th>
@@ -30,7 +31,7 @@
               <th scope="col">タイプ</th>
               <th scope="col">価額</th>
               <th scope="col">合計金額</th>
-              <th scope="col">鍵番号</th>
+              <th scope="col">暗証番号</th>
               <th scope="col">
                 クレジット番号
               </th>
@@ -56,6 +57,7 @@
               <% if booking.cancle %>
                 <tr class="table-danger">
                   <th scope="row"><%= booking.user.name %></th>
+                  <th><%= booking.user.phone %></th>
                   <td><%= booking.start_date.strftime("%Y-%m-%d") %> 16:00</td>
                   <td><%= booking.end_date.strftime("%Y-%m-%d") %> 11:00</td>
                   <td><%= booking.person_count %></td>
@@ -86,7 +88,7 @@
                     <% elsif !current_user.staff && booking.paied %>
                       <div class="text-secondary">クレジット更新</div>
                     <% elsif current_user.staff && booking.cancle %>
-                      <%= link_to("返金", "bookings/#{booking.id}", class: 'text-primary', method: :delete, data: {confirm: "返金？"}) %>
+                      <%= link_to("返金", "bookings/#{booking.id}/refund", class: 'text-primary', method: :delete, data: {confirm: "返金？"}) %>
                     <% end %>
                   </td>
                   <td>
@@ -104,6 +106,7 @@
               <% else %>
                 <tr>
                   <th scope="row"><%= booking.user.name %></th>
+                  <th><%= booking.user.phone %></th>
                   <td><%= booking.start_date.strftime("%Y-%m-%d") %> 16:00</td>
                   <td><%= booking.end_date.strftime("%Y-%m-%d") %> 11:00</td>
                   <td><%= booking.person_count %></td>
@@ -115,9 +118,9 @@
                   <td><%= booking.credit_no %></td>
                   <td>
                     <% if !current_user.staff %>
-                      <% if !booking.paied %>
+                      <% if !booking.paied && !booking.check_out %>
                         <%= link_to("キャンセル", "bookings/#{booking.id}", class: 'text-danger', method: :delete, data: {confirm: "キャンセル？"}) %>
-                      <% elsif booking.paied && !booking.cancle %>
+                      <% elsif booking.paied && !booking.cancle && !booking.check_out %>
                         <%= link_to("キャンセル", "bookings/#{booking.id}/cancel",  class: 'text-danger', method: :patch, data: {confirm: "キャンセル？"}) %>
                       <% else %>
                         <div class="text-secondary">キャンセル</div>

@@ -1,0 +1,29 @@
+<div class="container-fluid" style="background-color: #f0f8ff; padding-bottom: 95px; padding-top: 80px;">
+  <div class="container">
+    <p class="fs-3 text-center">よくある質問リスト</p>
+    <hr>
+    <div class="row pt-3">
+      <div class="col-12">
+        <% @faq_types.each do |type| %>
+          <p class="fs-5"><%= type.faqtype %></p>
+          <div class="accordion accordion-flush pb-4" id="accordionFlushExample">
+            <% @faqs.each do |faq| %>
+              <% if type.faqtype == faq.faqtype %>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="faq-<%= faq.id %>">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1-<%= faq.id %>" aria-expanded="false" aria-controls="faq1-<%= faq.id %>">
+                      <%= faq.title %>
+                    </button>
+                  </h2>
+                  <div id="faq1-<%= faq.id %>" class="accordion-collapse collapse" aria-labelledby="faq-<%= faq.id %>" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body"><%= faq.content %></div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -56,6 +56,17 @@ ja:
               blank: "が入力されていません。"
               too_short: "は%{count}文字以上に設定して下さい。"
               too_long: "は%{count}文字以下に設定して下さい。"
+        faq:
+          attributes:
+            faqtype:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません。"
+            title:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません。"
+            content:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません。"
     attributes:
       user:
         current_password: "現在のパスワード"
@@ -73,10 +84,15 @@ ja:
         image: "写真"
       booking:
         credit_no: "クレジット番号"
+      faq:
+        faqtype: "タイプ"
+        title: "タイトル"
+        content: "内容"
     models:
       user: "ユーザ"
       room: "部屋"
       booking: "予約"
+      faq: "よくある質問"
   devise:
     confirmations:
       new:

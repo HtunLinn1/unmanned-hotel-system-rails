@@ -10,7 +10,7 @@
     <span class="closebtn float-end" onclick="this.parentElement.style.display='none';">&times;</span>
   </div>
 <% end %>
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+<div id="carouselExampleControls" class="carousel" data-interval="1000" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
       <%= image_tag "unmanned.jpg", class: "d-block carousel-img" %>
@@ -37,7 +37,7 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-<% if !current_user.staff %>
+<% if user_signed_in? && !current_user.staff || !user_signed_in? %>
   <div class="d-flex justify-content-center booking-date pt-3 pb-4">
     <div class="text-center mx-5">
       <div class="row">

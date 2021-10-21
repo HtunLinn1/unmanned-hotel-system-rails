@@ -18,6 +18,9 @@
               <th scope="col">タイプ</th>
               <th scope="col">価額</th>
               <th scope="col">合計金額</th>
+              <th scope="col">暗証番号</th>
+              <th scope="col">クレジット番号</th>
+              <th scope="col">削除</th>
             </tr>
           </thead>
           <tbody>
@@ -31,6 +34,9 @@
                   <td><%= booking.room.room_type %></td>
                   <td><%= booking.room.price %></td>
                   <td><%= booking.total_amount %></td>
+                  <td><%= booking.key %></td>
+                  <td><%= booking.credit_no %></td>
+                  <td><%= link_to("削除", "#{booking.id}/history-delete", class: 'text-danger', method: :delete, data: {confirm: "削除？"}) %></td>
                 </tr>
             <% end %>
           </tbody>

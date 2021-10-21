@@ -38,26 +38,17 @@
           <a class="nav-link" href="#content" style="color: white;">お問い合わせ</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#pricing" style="color: white;">よくある質問</a>
+          <a class="nav-link" href="/faqs" style="color: white;">よくある質問</a>
         </li>
         <% if user_signed_in? && current_user.staff %>
           <li class="nav-item">
-            <div class="dropdown pt-1">
-              <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                管理
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li>
-                  <a class="dropdown-item fs-6" href="/rooms">部屋</a>
-                </li>
-                <li>
-                  <a class="dropdown-item fs-6" href="/bookings">予約リスト</a>
-                </li>
-                <li>
-                  <a class="dropdown-item fs-6" href="/bookings/history">予約履歴</a>
-                </li>
-              </ul>
-            </div>
+            <a class="nav-link" href="/rooms" style="color: white;">部屋</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/bookings" style="color: white;">予約リスト</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/bookings/history" style="color: white;">予約履歴</a>
           </li>
         <% end %>
           <% if user_signed_in? %>

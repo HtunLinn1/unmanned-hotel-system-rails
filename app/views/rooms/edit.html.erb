@@ -26,7 +26,7 @@
             <% if !@room.errors.has_key?(:room_type) %>
               <br>
             <% end %>
-            <%= f.select :room_type, ['シングルルーム', 'ツインルーム'], {}, {class: 'hoge', id: 'hogehoge'} %>
+            <%= f.select :room_type, ['シングルルーム', 'ツインルーム', 'デラックスツインルーム', 'スィートルーム'] %>
             <div class="text-danger">
               <%= @room.errors.full_messages_for(:room_type).join(', ') if @room.errors.has_key?(:room_type) %>
             </div>
