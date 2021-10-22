@@ -11,7 +11,15 @@ class BookingsController < ApplicationController
   def index
     Booking.where("end_date < ?", Date.today).update_all(check_out:true, key:'*****', credit_no: '***************')
     if current_user.staff
-      @bookings = Booking.where(check_out: false).page(params[:page]).per(5).order('start_date ASC')
+      if params[:status] == 'cancel'
+        @bookings = Booking.where(cancle: true).page(params[:page]).per(5).order('start_date ASC')
+      elsif params[:status] == 'notpaid'
+        @bookings = Booking.where(paied: false).page(params[:page]).per(5).order('start_date ASC')
+      else
+        @bookings = Booking.where(check_out: false).page(params[:page]).per(5).order('start_date ASC')
+      end
+      @cancel_count = Booking.where(cancle: true).count
+      @nopaid_count = Booking.where(paied: false).count
     else
       user = User.find_by_id(current_user.id)
       @bookings = user.bookings.page(params[:page]).per(5).order('start_date ASC')
@@ -41,7 +49,7 @@ class BookingsController < ApplicationController
     end
 
     if @enddate < @startdate
-      flash[:notice] = "#{@startdate}チャックイン日付は#{@enddate}チャックアウト日付より超えています!"
+      flash[:notice] = "#{@startdate}チェックイン日付は#{@enddate}チェックアウト日付より超えています!"
       redirect_to root_path
     end
 
@@ -77,6 +85,10 @@ class BookingsController < ApplicationController
     @booking.packing = false
     @booking.key = '*****'
     if @booking.save
+      # channel message
+      nopaid_count = Booking.where(paied: false).count
+      ActionCable.server.broadcast 'message_channel', nopaid_count: nopaid_count
+
       flash[:notice] = "予約成功しました!"
       redirect_to("/bookings")
     else
@@ -88,6 +100,10 @@ class BookingsController < ApplicationController
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
+    # channel message
+    nopaid_count = Booking.where(paied: false).count
+    ActionCable.server.broadcast 'message_channel', nopaid_count: nopaid_count
+    
     flash[:notice] = "成功しました!"
     redirect_to bookings_url
   end
@@ -99,6 +115,10 @@ class BookingsController < ApplicationController
   def update
     @booking = Booking.find(params[:id])
     if @booking.update(booking_params)
+      # channel message
+      change_credit = 'change-credit'
+      ActionCable.server.broadcast 'message_channel', change_credit: change_credit
+
       flash[:notice] = "更新成功！"
       redirect_to("/bookings")
     else
@@ -125,11 +145,11 @@ class BookingsController < ApplicationController
     key_no = key_no
 
     if booking_update
-      flash[:notice] = "支払い成功！"
+      flash[:notice] = "支払成功！"
       mail_deliever = PaymentMailer.payment(cus_name, cus_email, staff_email, start_date, end_date, room_no, room_type, price, total_amount, key_no).deliver_now
       redirect_to("/bookings")
     else
-      flash[:alert] = "支払い失敗"
+      flash[:alert] = "支払失敗"
       redirect_to("/bookings")
     end
   end
@@ -137,6 +157,9 @@ class BookingsController < ApplicationController
   def cancel
     cancel = Booking.where(id:params[:id]).update_all(cancle:true)
     if cancel
+      # channel message
+      cancel_count = Booking.where(cancle: true).count
+      ActionCable.server.broadcast 'message_channel', cancel_count: cancel_count
       redirect_to("/bookings")
     else
       flash[:alert] = "キャンセル失敗"

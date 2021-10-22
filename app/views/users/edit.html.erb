@@ -1,0 +1,51 @@
+<div class="container-fluid" style="background-color: #f0f8ff; padding-bottom: 263px;">
+  <div class="container">
+    <div class="row" style="padding-top: 90px;">
+      <div class="col-12 d-flex justify-content-center">
+        <h2>ユーザ更新</h2>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <% if @user %>
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center">
+        <%= form_for(@user, local: true) do |f| %>
+          <div>
+            <%= f.label :name, "名前" %>
+            <% if !@user.errors.has_key?(:name) %>
+              <br>
+            <% end %>
+            <%= f.text_field :name %>
+            <% @user.errors.full_messages_for(:name).each do |message| %>
+              <div class="text-danger"><%= message %></div>
+            <% end %>
+          </div>
+          <div>
+            <%= f.label :email, "メールアドレス" %>
+            <% if !@user.errors.has_key?(:email) %>
+              <br>
+            <% end %>
+            <%= f.text_field :email %>
+            <% @user.errors.full_messages_for(:email).each do |message| %>
+              <div class="text-danger"><%= message %></div>
+            <% end %>
+          </div>
+          <div>
+            <%= f.label :phone, "電話番号" %>
+            <% if !@user.errors.has_key?(:phone) %>
+              <br>
+            <% end %>
+            <%= f.text_field :phone %>
+            <% @user.errors.full_messages_for(:phone).each do |message| %>
+              <div class="text-danger"><%= message %></div>
+            <% end %>
+          </div>
+          <div class="text-center pt-4">
+            <%= f.submit %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   delete '/bookings/:id/refund', to: 'bookings#refund'
   resources :rooms
   resources :faqs
+  resources :users
 end

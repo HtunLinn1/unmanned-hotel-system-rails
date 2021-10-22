@@ -108,6 +108,30 @@ li a {
   max-width: 400px;
   max-height: 400px;
 }
+
+.get-count {
+  position: absolute;
+  top: -20px;
+  background-color: red;
+  border-radius: 50px;
+  padding: 0px 7px 2px 7px;
+  right: -8px;
+  color: white;
+}
+.cancel-count {
+  position: absolute;
+  top: -20px;
+  background-color: red;
+  border-radius: 50px;
+  padding: 0px 7px 2px 7px;
+  right: -8px;
+  color: white;
+}
+.user-img {
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 10px;
+}
 /* @media screen and (min-height: 516px) {
   footer {
     position: fixed;

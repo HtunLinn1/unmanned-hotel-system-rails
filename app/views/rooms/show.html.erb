@@ -30,14 +30,14 @@
     </div>
     <div class="row">
       <div class="col-12 d-flex justify-content-center pb-2">
-        <%= image_tag @room.image.url, class: "room-show-img" %>
+        <%= image_tag @room.image.url, class: "room-show-img img-thumbnail" %>
       </div>
     </div>
     <div class="row">
       <div class="col-12 d-flex justify-content-center">
         <% if user_signed_in? && current_user.staff %>
-          <%= link_to("Update", "/rooms/#{@room.id}/edit") %> &nbsp;&nbsp;&nbsp;
-          <%= link_to("Delete", "/rooms/#{@room.id}", method: :delete, data: {confirm: "sure delete？"}) %>&nbsp;&nbsp;&nbsp;
+          <%= link_to("更新", "/rooms/#{@room.id}/edit") %> &nbsp;&nbsp;&nbsp;
+          <%= link_to("削除", "/rooms/#{@room.id}", method: :delete, data: {confirm: "削除？"}) %>&nbsp;&nbsp;&nbsp;
         <% end %>
         <%= link_to("Rooms", "/rooms", method: :get) %>
       </div>

@@ -20,7 +20,7 @@
           <div class="col-12 col-md-3 text-center">
             <% if @booking && room.limit_person < @people || @booking && @booked_roomids.include?(room.id) %>
               <div class="card" style="width: 20rem; color: red;">
-                <%= image_tag room.image.url, class: "card-img-top room-index-img", disable: "disabled", alt: "room" %>
+                <%= image_tag room.image.url, class: "card-img-top room-index-img img-thumbnail", disable: "disabled", alt: "room" %>
               
                 <div class="card-body">
                   <h5 class="card-title"><%= room.room_no %></h5>
@@ -32,11 +32,11 @@
               <div class="card" style="width: 20rem;">
                 <% if @booking %>
                   <%= link_to new_booking_path(:startdate => @startdate, :enddate => @enddate, :people => @people, :room_id => room.id) do %>
-                    <%= image_tag room.image.url, class: "card-img-top room-index-img", alt: "room" %>
+                    <%= image_tag room.image.url, class: "card-img-top room-index-img img-thumbnail", alt: "room" %>
                   <% end %>
                 <% else %>
                   <%= link_to("/rooms/#{room.id}") do %>
-                    <%= image_tag room.image.url, class: "card-img-top room-index-img", alt: "room" %>
+                    <%= image_tag room.image.url, class: "card-img-top room-index-img img-thumbnail", alt: "room" %>
                   <% end %>
                 <% end %>
                 <div class="card-body">
@@ -59,7 +59,7 @@
           <div class="col-12 col-md-3 text-center">
             <% if @booking && room.limit_person < @people || @booking && @booked_roomids.include?(room.id) %>
               <div class="card" style="width: 20rem; color: red;">
-                <%= image_tag room.image.url, class: "card-img-top room-index-img", disable: "disabled", alt: "room" %>
+                <%= image_tag room.image.url, class: "card-img-top room-index-img img-thumbnail", disable: "disabled", alt: "room" %>
               
                 <div class="card-body">
                   <h5 class="card-title"><%= room.room_no %></h5>
@@ -71,11 +71,11 @@
               <div class="card" style="width: 20rem;">
                 <% if @booking %>
                   <%= link_to new_booking_path(:startdate => @startdate, :enddate => @enddate, :people => @people, :room_id => room.id) do %>
-                    <%= image_tag room.image.url, class: "card-img-top room-index-img", alt: "room" %>
+                    <%= image_tag room.image.url, class: "card-img-top room-index-img img-thumbnail", alt: "room" %>
                   <% end %>
                 <% else %>
                   <%= link_to("/rooms/#{room.id}") do %>
-                    <%= image_tag room.image.url, class: "card-img-top room-index-img", alt: "room" %>
+                    <%= image_tag room.image.url, class: "card-img-top room-index-img img-thumbnail", alt: "room" %>
                   <% end %>
                 <% end %>
                 <div class="card-body">
@@ -98,7 +98,7 @@
           <div class="col-12 col-md-3 text-center">
             <% if @booking && room.limit_person < @people || @booking && @booked_roomids.include?(room.id) %>
               <div class="card" style="width: 20rem; color: red;">
-                <%= image_tag room.image.url, class: "card-img-top room-index-img", disable: "disabled", alt: "room" %>
+                <%= image_tag room.image.url, class: "card-img-top room-index-img img-thumbnail", disable: "disabled", alt: "room" %>
               
                 <div class="card-body">
                   <h5 class="card-title"><%= room.room_no %></h5>
@@ -110,11 +110,11 @@
               <div class="card" style="width: 20rem;">
                 <% if @booking %>
                   <%= link_to new_booking_path(:startdate => @startdate, :enddate => @enddate, :people => @people, :room_id => room.id) do %>
-                    <%= image_tag room.image.url, class: "card-img-top room-index-img", alt: "room" %>
+                    <%= image_tag room.image.url, class: "card-img-top room-index-img img-thumbnail", alt: "room" %>
                   <% end %>
                 <% else %>
                   <%= link_to("/rooms/#{room.id}") do %>
-                    <%= image_tag room.image.url, class: "card-img-top room-index-img", alt: "room" %>
+                    <%= image_tag room.image.url, class: "card-img-top room-index-img img-thumbnail", alt: "room" %>
                   <% end %>
                 <% end %>
                 <div class="card-body">
@@ -137,7 +137,7 @@
           <div class="col-12 col-md-3 text-center">
             <% if @booking && room.limit_person < @people || @booking && @booked_roomids.include?(room.id) %>
               <div class="card" style="width: 20rem; color: red;">
-                <%= image_tag room.image.url, class: "card-img-top room-index-img", disable: "disabled", alt: "room" %>
+                <%= image_tag room.image.url, class: "card-img-top room-index-img img-thumbnail", disable: "disabled", alt: "room" %>
               
                 <div class="card-body">
                   <h5 class="card-title"><%= room.room_no %></h5>
@@ -149,11 +149,11 @@
               <div class="card" style="width: 20rem;">
                 <% if @booking %>
                   <%= link_to new_booking_path(:startdate => @startdate, :enddate => @enddate, :people => @people, :room_id => room.id) do %>
-                    <%= image_tag room.image.url, class: "card-img-top room-index-img", alt: "room" %>
+                    <%= image_tag room.image.url, class: "card-img-top room-index-img img-thumbnail", alt: "room" %>
                   <% end %>
                 <% else %>
                   <%= link_to("/rooms/#{room.id}") do %>
-                    <%= image_tag room.image.url, class: "card-img-top room-index-img", alt: "room" %>
+                    <%= image_tag room.image.url, class: "card-img-top room-index-img img-thumbnail", alt: "room" %>
                   <% end %>
                 <% end %>
                 <div class="card-body">

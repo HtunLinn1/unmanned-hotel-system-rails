@@ -89,10 +89,10 @@ ja:
         title: "タイトル"
         content: "内容"
     models:
-      user: "ユーザ"
-      room: "部屋"
-      booking: "予約"
-      faq: "よくある質問"
+      user: "User"
+      room: "Room"
+      booking: "Booking"
+      faq: "Faq"
   devise:
     confirmations:
       new:
