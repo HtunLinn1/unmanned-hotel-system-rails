@@ -44,10 +44,12 @@
         <li class="nav-item">
           <a class="nav-link" href="/faqs" style="color: white;">よくある質問</a>
         </li>
-        <% if user_signed_in? && current_user.staff %>
+        <% if user_signed_in? %>
           <li class="nav-item">
             <a class="nav-link" href="/rooms" style="color: white;">部屋</a>
           </li>
+        <% end %>
+        <% if user_signed_in? && current_user.staff %>
           <li class="nav-item">
             <a class="nav-link" href="/bookings" style="color: white;">予約リスト</a>
           </li>

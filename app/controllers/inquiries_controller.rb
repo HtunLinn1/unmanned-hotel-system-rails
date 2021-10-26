@@ -1,5 +1,8 @@
 class InquiriesController < ApplicationController
   before_action :authenticate_user!
+  before_action only: [:index, :show, :create] do
+    staff_check
+  end
   def index
     @inquiry = Inquiry.new
   end
@@ -28,6 +31,11 @@ class InquiriesController < ApplicationController
   end
 
   private
+  def staff_check
+    redirect_to root_path if current_user.staff
+    flash[:alert] = "お客様だけ！" if current_user.staff
+  end
+
     def inquiry_params
       params.require(:inquiry).permit(:title, :content)
     end

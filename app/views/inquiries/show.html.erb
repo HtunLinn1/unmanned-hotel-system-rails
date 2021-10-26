@@ -1,11 +1,12 @@
 <div class="container-fluid" style="padding-bottom: 424px; padding-top: 90px;">
   <div class="container">
-  <% if notice %>
-    <div class="alert-success p-3">
-      <%= notice %>
-      <span class="closebtn float-end" onclick="this.parentElement.style.display='none';">&times;</span>
-    </div>
-  <% end %>
+    <p class="text-center fs-4">お問い合わせ</p>
+    <% if notice %>
+      <div class="alert-success p-3">
+        <%= notice %>
+        <span class="closebtn float-end" onclick="this.parentElement.style.display='none';">&times;</span>
+      </div>
+    <% end %>
     <div class="d-flex justify-content-evenly">
       <div class="border">
         <ul class="nav nav-tabs" id="myTab" role="tablist" style="width: 300px;">
