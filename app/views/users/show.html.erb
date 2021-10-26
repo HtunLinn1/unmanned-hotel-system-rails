@@ -32,7 +32,7 @@
       <div class="row">
         <div class="col-12">
           <%= link_to("更新", "/users/#{@user.id}/edit", class: 'btn btn-primary') %>
-          <%= link_to("削除", "/users/#{@user.id}", class: 'btn btn-danger', method: :delete, data: {confirm: "削除？"}) %>
+          <%= link_to("アカウント削除", "/users/#{@user.id}", class: 'btn btn-danger', method: :delete, data: {confirm: "削除？"}) %>
         </div>
       </div>
     <% end %>

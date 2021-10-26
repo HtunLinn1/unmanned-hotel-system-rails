@@ -26,6 +26,11 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
+
+    # channel message
+    user_delete = 'user-delete'
+    ActionCable.server.broadcast 'message_channel', user_delete: user_delete
+
     flash[:notice] = "削除成功!"
     redirect_to user_session_url
   end

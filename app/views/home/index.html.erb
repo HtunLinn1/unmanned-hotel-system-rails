@@ -10,33 +10,45 @@
     <span class="closebtn float-end" onclick="this.parentElement.style.display='none';">&times;</span>
   </div>
 <% end %>
-<div id="carouselExampleControls" class="carousel" data-interval="1000" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <%= image_tag "unmanned.jpg", class: "d-block carousel-img" %>
+<% if notice || alert %>
+  <div id="carouselExampleControls" class="carousel" data-interval="1000" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <%= image_tag "unmanned.jpg", class: "d-block carousel-img img-fluid" %>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag "bed3.jpg", class: "d-block carousel-img img-fluid" %>
+      </div>
     </div>
-    <div class="carousel-item">
-      <%= image_tag "self-checkin.png", class: "d-block carousel-img" %>
-    </div>
-    <div class="carousel-item">
-      <%= image_tag "bed2.jpg", class: "d-block carousel-img" %>
-    </div>
-    <div class="carousel-item">
-      <%= image_tag "bed3.jpg", class: "d-block carousel-img" %>
-    </div>
-    <div class="carousel-item">
-      <%= image_tag "facilities.png", class: "d-block carousel-img" %>
-    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+<% else %>
+  <div id="carouselExampleControls" class="carousel pt-5" data-interval="1000" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <%= image_tag "unmanned.jpg", class: "d-block carousel-img img-fluid" %>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag "bed3.jpg", class: "d-block carousel-img img-fluid" %>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+<% end %>
 <% if user_signed_in? && !current_user.staff || !user_signed_in? %>
   <div class="d-flex justify-content-center booking-date pt-3 pb-4">
     <div class="text-center mx-5">

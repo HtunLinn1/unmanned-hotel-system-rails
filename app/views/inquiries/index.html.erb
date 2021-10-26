@@ -1,0 +1,51 @@
+<div class="container-fluid" style="padding-bottom: 140px; padding-top: 90px;">
+  <div class="container">
+    <div class="d-flex justify-content-evenly">
+      <div class="border">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">電話</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">メール</button>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active p-2" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div>本社</div>
+            <div><%=icon("telephone-fill", class: "text-gray")%>&nbsp;&nbsp;080-1234-1234</div>
+            <div class="pt-3">本社</div>
+            <div><%=icon("telephone-fill", class: "text-gray")%>&nbsp;&nbsp;080-1234-1235</div>
+            <div class="pt-3">本社</div>
+            <div><%=icon("telephone-fill", class: "text-gray")%>&nbsp;&nbsp;080-1234-1236</div>
+          </div>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <form action="/rooms" method="get" accept-charset="UTF-8" id="myform" class="row d-flex justify-content-center">
+              <div class="col-12">
+                <label for="date">チェックイン</label>
+                <input type="text" name="startdate" class="start-datepicker form-control" id="startdate" autocomplete="off" placeholder="年/月/日">
+              </div>
+              <div class="col-12">
+                <label for="date">チェックアウト</label>
+                <input type="text" name="enddate" class="end-datepicker form-control" id="enddate" autocomplete="off" placeholder="年/月/日">
+              </div>
+              <div class="col-12">
+                <label for="date">チェックアウト</label>
+                <input type="text" name="enddate" class="end-datepicker form-control" id="enddate" autocomplete="off" placeholder="年/月/日">
+              </div>
+              <div class="col-12">
+                <label for="date">チェックアウト</label>
+                <input type="text" name="enddate" class="end-datepicker form-control" id="enddate" autocomplete="off" placeholder="年/月/日">
+              </div>
+              <div class="row text-center pt-2">
+                <div>
+                  <input type="submit" value="検索" onclick="return myFunction()" data-disable-with="Search" />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

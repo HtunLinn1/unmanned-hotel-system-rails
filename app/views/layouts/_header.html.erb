@@ -7,11 +7,6 @@
           7Stars Hotel
         </a>
       </div>
-      <div class="header-logo pt-1">
-        <% if user_signed_in? %>
-          <%= link_to("#{current_user.name}", "/users/#{current_user.id}", class: ' user', method: :get) %>
-        <% end %>
-      </div>
     </div>
     <!-- トグルボタン -->
     <button class="navbar-toggler"
@@ -27,16 +22,25 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#home" style="color: white;">
+          <div class="header-logo pt-2">
+            <% if user_signed_in? %>
+              <%= link_to("#{current_user.name}", "/users/#{current_user.id}", class: 'user', method: :get) %>
+            <% end %>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/facilities/index" style="color: white;">
             設備案内
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#reputation" style="color: white;">スマートロック</a>
+          <a class="nav-link" href="/smartlocks/index" style="color: white;">スマートロック</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#content" style="color: white;">お問い合わせ</a>
-        </li>
+        <% if user_signed_in? && !current_user.staff %>
+          <li class="nav-item">
+            <a class="nav-link" href="/inquiries/index" style="color: white;">お問い合わせ</a>
+          </li>
+        <% end %>
         <li class="nav-item">
           <a class="nav-link" href="/faqs" style="color: white;">よくある質問</a>
         </li>

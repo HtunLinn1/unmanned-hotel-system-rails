@@ -18,6 +18,11 @@ consumer.subscriptions.create("MessageChannel", {
       var content = container.innerHTML
       container.innerHTML= content
       return location.reload();
+    } else if (data.user_delete = 'user-delete') {
+      var container = document.getElementById('bookings')
+      var content = container.innerHTML
+      container.innerHTML= content
+      return location.reload();
     } else {
       document.getElementById('cancel-count').innerHTML = data.cancel_count
       return location.reload();
