@@ -67,6 +67,18 @@ ja:
             content:
               taken: "は既に使用されています。"
               blank: "が入力されていません。"
+        inquiry:
+          attributes:
+            title:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません。"
+              too_short: "は%{count}文字以上に設定して下さい。"
+              too_long: "は%{count}文字以下に設定して下さい。"
+            content:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません。"
+              too_short: "は%{count}文字以上に設定して下さい。"
+              too_long: "は%{count}文字以下に設定して下さい。"
     attributes:
       user:
         current_password: "現在のパスワード"
@@ -88,11 +100,15 @@ ja:
         faqtype: "タイプ"
         title: "タイトル"
         content: "内容"
+      inquiry:
+        title: "タイトル"
+        content: "メッセージ本文"
     models:
       user: "User"
       room: "Room"
       booking: "Booking"
       faq: "Faq"
+      inquiry: "Inquiry"
   devise:
     confirmations:
       new:

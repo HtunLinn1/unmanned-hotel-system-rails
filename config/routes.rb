@@ -19,5 +19,5 @@ Rails.application.routes.draw do
   resources :users
   get '/facilities/index', to: 'facilities#index'
   get '/smartlocks/index', to: 'smartlocks#index'
-  get '/inquiries/index', to: 'inquiries#index'
+  resources :inquiries
 end
