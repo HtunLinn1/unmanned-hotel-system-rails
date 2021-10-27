@@ -9,7 +9,7 @@
       </div>
     </div>
     <!-- トグルボタン -->
-    <button class="navbar-toggler"
+    <button class="navbar-toggler pr-5"
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#navbarNav"
@@ -21,13 +21,11 @@
     <!-- リンク一覧 -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <div class="header-logo pt-2">
-            <% if user_signed_in? %>
-              <%= link_to("#{current_user.name}", "/users/#{current_user.id}", class: 'user', method: :get) %>
-            <% end %>
-          </div>
-        </li>
+        <% if user_signed_in? %>
+          <li class="nav-item text-center pt-2">
+            <%= link_to("#{current_user.name}", "/users/#{current_user.id}", class: 'user', method: :get) %>
+          </li>
+        <% end %>
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="/facilities/index" style="color: white;">
             設備案内
@@ -63,7 +61,7 @@
                 <a class="nav-link" href="/bookings" style="color: white;">予約リスト</a>
               </li>
             <% end %>
-            <li class="nav-item pt-2">
+            <li class="nav-item pt-2 text-center">
               <%= link_to("ログアウト", "/users/sign_out", method: :delete, data: {confirm: "本当にログアウトしますか？"}) %>
             </li>
           <% else %>

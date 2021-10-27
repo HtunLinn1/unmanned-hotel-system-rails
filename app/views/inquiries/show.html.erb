@@ -1,60 +1,56 @@
-<div class="container-fluid" style="padding-bottom: 424px; padding-top: 90px;">
-  <div class="container">
-    <p class="text-center fs-4">お問い合わせ</p>
-    <% if notice %>
-      <div class="alert-success p-3">
-        <%= notice %>
-        <span class="closebtn float-end" onclick="this.parentElement.style.display='none';">&times;</span>
-      </div>
-    <% end %>
-    <div class="d-flex justify-content-evenly">
-      <div class="border">
-        <ul class="nav nav-tabs" id="myTab" role="tablist" style="width: 300px;">
-          <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">メール</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">電話</button>
-          </li>
-        </ul>
-        <div class="tab-content" id="myTabContent" style="width: 300px;">
-          <div class="tab-pane fade show active p-3" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <%= form_with(model: @inquiry, local: true) do |f| %>
-              <div>
-                <%= f.label :title, "題名" %>
-                <% if !@inquiry.errors.has_key?(:title) %>
-                  <br>
-                <% end %>
-                <%= f.text_field :title ,class: 'form-control' %>
-                <div class="text-danger">
-                  <%= @inquiry.errors.full_messages_for(:title).join(', ') if @inquiry.errors.has_key?(:title) %>
-                </div>
+<div class="container" style="padding-bottom: 424px; padding-top: 90px; max-width: 700px;">
+  <p class="text-center fs-4">お問い合わせ</p>
+  <% if notice %>
+    <div class="alert-success p-3">
+      <%= notice %>
+      <span class="closebtn float-end" onclick="this.parentElement.style.display='none';">&times;</span>
+    </div>
+  <% end %>
+    <div class="border">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">メール</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">電話</button>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active p-3" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <%= form_with(model: @inquiry, local: true) do |f| %>
+            <div>
+              <%= f.label :title, "題名" %>
+              <% if !@inquiry.errors.has_key?(:title) %>
+                <br>
+              <% end %>
+              <%= f.text_field :title ,class: 'form-control' %>
+              <div class="text-danger">
+                <%= @inquiry.errors.full_messages_for(:title).join(', ') if @inquiry.errors.has_key?(:title) %>
               </div>
-              <div>
-                <%= f.label :content, "メッセージ本文" %>
-                <% if !@inquiry.errors.has_key?(:content) %>
-                  <br>
-                <% end %>
-                <%= f.text_area :content, class: 'form-control row-5' %>
-                <div class="text-danger">
-                  <%= @inquiry.errors.full_messages_for(:content).join(', ') if @inquiry.errors.has_key?(:content) %>
-                </div>
+            </div>
+            <div>
+              <%= f.label :content, "メッセージ本文" %>
+              <% if !@inquiry.errors.has_key?(:content) %>
+                <br>
+              <% end %>
+              <%= f.text_area :content, class: 'form-control row-5' %>
+              <div class="text-danger">
+                <%= @inquiry.errors.full_messages_for(:content).join(', ') if @inquiry.errors.has_key?(:content) %>
               </div>
-              <div class="text-center pt-4">
-                <%= f.submit %>
-              </div>
-            <% end %>
-          </div>
-          <div class="tab-pane fade p-3" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <div>本社</div>
-            <div><%=icon("telephone-fill", class: "text-gray")%>&nbsp;&nbsp;080-1234-1234</div>
-            <div class="pt-3">本社</div>
-            <div><%=icon("telephone-fill", class: "text-gray")%>&nbsp;&nbsp;080-1234-1235</div>
-            <div class="pt-3">本社</div>
-            <div><%=icon("telephone-fill", class: "text-gray")%>&nbsp;&nbsp;080-1234-1236</div>
-          </div>
+            </div>
+            <div class="text-center pt-4">
+              <%= f.submit %>
+            </div>
+          <% end %>
+        </div>
+        <div class="tab-pane fade p-3" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+          <div>本社</div>
+          <div><%=icon("telephone-fill", class: "text-gray")%>&nbsp;&nbsp;080-1234-1234</div>
+          <div class="pt-3">本社</div>
+          <div><%=icon("telephone-fill", class: "text-gray")%>&nbsp;&nbsp;080-1234-1235</div>
+          <div class="pt-3">本社</div>
+          <div><%=icon("telephone-fill", class: "text-gray")%>&nbsp;&nbsp;080-1234-1236</div>
         </div>
       </div>
     </div>
-  </div>
 </div>

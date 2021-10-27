@@ -1,3 +1,4 @@
+@import 'bootstrap-datetimepicker';
 
 input, textarea {
   box-sizing: border-box;
@@ -35,7 +36,7 @@ li {
 }
 
 .header {
-  padding: 15px;
+  /* padding: 15px; */
   background-color: #d5a662;
   color: #fff;
   min-height: 70px;
@@ -45,7 +46,6 @@ li {
 
 .header-logo {
   float: left;
-  padding-right: 20px;
 }
 .hotel-logo {
   max-width: 55px;
@@ -132,17 +132,108 @@ li a {
   max-height: 300px;
   border-radius: 10px;
 }
-/* @media screen and (min-height: 516px) {
-  footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+@media screen and (min-width: 516px) {
+  .bookings {
+    padding: 10px;
   }
-} */
-/* footer {
-  clear: both;
-  position: relative;
-  margin-top: -200px;
-  bottom: 0;
-} */
+}
+
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	.bookings table, .bookings thead, .bookings tbody, .bookings th, .bookings td, .bookings tr { 
+		display: block; 
+	}
+	.bookings thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	.bookings tr { 
+    border: 1px solid #ccc; 
+  }
+	
+	.bookings td { 
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%;
+	}
+	
+	.bookings td:before { 
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 110px;
+		white-space: nowrap;
+	}
+
+	.bookings td:nth-of-type(1):before { content: "チェックイン"; }
+	.bookings td:nth-of-type(2):before { content: "チェックアウト"; }
+	.bookings td:nth-of-type(3):before { content: "宿泊人数"; }
+	.bookings td:nth-of-type(4):before { content: "部屋番号"; }
+  .bookings td:nth-of-type(5):before { content: "部屋価額"; }
+	.bookings td:nth-of-type(6):before { content: "合計金額"; }
+	.bookings td:nth-of-type(7):before { content: "暗証番号"; }
+  .bookings td:nth-of-type(8):before { content: "credit_no"; }
+	.bookings td:nth-of-type(9):before { content: "キャンセル"; }
+	.bookings td:nth-of-type(10):before { content: "クレジット"; }
+	.bookings td:nth-of-type(11):before { content: "支払状況"; }
+
+
+  /* create booking */
+  .booking-create table, .booking-create thead, .booking-create tbody, .booking-create th, .booking-create td, .booking-create tr { 
+		display: block; 
+	}
+	.booking-create thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	.booking-create tr { 
+    border: 1px solid #ccc; 
+  }
+	
+	.booking-create td { 
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%;
+	}
+	
+	.booking-create td:before { 
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 110px;
+		white-space: nowrap;
+	}
+
+	.booking-create td:nth-of-type(1):before { content: "チェックイン"; }
+	.booking-create td:nth-of-type(2):before { content: "チェックアウト"; }
+	.booking-create td:nth-of-type(3):before { content: "宿泊人数"; }
+	.booking-create td:nth-of-type(4):before { content: "部屋番号"; }
+  .booking-create td:nth-of-type(5):before { content: "部屋タイプ"; }
+	.booking-create td:nth-of-type(6):before { content: "部屋価額"; }
+	.booking-create td:nth-of-type(7):before { content: "合計金額"; }
+}
+
+@media screen and (max-width: 700px) {
+  .navbar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .navbar a {float: left;}
+  div.content {margin-left: 0;}
+}
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .navbar a {
+    text-align: center;
+    float: none;
+  }
+}

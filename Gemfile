@@ -67,3 +67,6 @@ gem 'fog',                     '1.36.0'
 
 # paginate
 gem 'kaminari'
+
+# date picker
+gem 'bootstrap-datetimepicker-rails'

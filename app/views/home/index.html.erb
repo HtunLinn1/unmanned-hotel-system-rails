@@ -60,11 +60,11 @@
       <form action="/rooms" method="get" accept-charset="UTF-8" id="myform" class="row d-flex justify-content-center">
         <div class="col-12 col-sm-3 datepicker">
           <label for="date">チェックイン</label>
-          <input type="text" name="startdate" class="start-datepicker form-control" id="startdate" autocomplete="off" placeholder="年/月/日">
+          <input type="text" name="startdate" class="start-datepicker form-control datepicker" id="startdate" autocomplete="off" placeholder="年/月/日">
         </div>
         <div class="col-12 col-sm-3 datepicker">
           <label for="date">チェックアウト</label>
-          <input type="text" name="enddate" class="end-datepicker form-control" id="enddate" autocomplete="off" placeholder="年/月/日">
+          <input type="text" name="enddate" class="end-datepicker form-control datepicker" id="enddate" autocomplete="off" placeholder="年/月/日">
         </div>
         <div class="col-12 col-sm-2 pt-1">
           <label for="date">人</label>
@@ -104,11 +104,6 @@
     <div class="col-12 col-md-4 text-wrap" style="max-width: 250px;">
       <%= image_tag "event3.jpg", class: "d-block event-img img-thumbnail" %>
       <p>ファミリーマートコラボ企画</p>
-    </div>
-  </div>
-  <div class="row text-center">
-    <div>
-      <button class="btn btn-info">もっと見る</button>
     </div>
   </div>
 </div>

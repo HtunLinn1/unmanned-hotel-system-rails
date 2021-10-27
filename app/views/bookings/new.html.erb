@@ -1,37 +1,31 @@
 <div class="container-fluid" style="background-color: #f0f8ff; padding-bottom: 95px; padding-top: 80px;">
   <div class="container">
-    <div class="row">
-      <div class="col-12 d-flex justify-content-evenly">
-        <div>
-          <div class="fs-3">チェックイン</div>
-          <p class="pt-2"><%= @startdate %> 16:00</p>
-        </div>
-        <div>
-          <div class="fs-3">チェックアウト</div>
-          <p class="pt-2"><%= @enddate %> 11:00</p>
-        </div>
-        <div>
-          <div class="fs-3">人</div>
-          <p class="pt-2"><%= @people %>人</p>
-        </div>
-        <div>
-          <div class="fs-3">部屋</div>
-          <p class="pt-2"><%= @room.room_no %></p>
-        </div>
-        <div>
-          <div class="fs-3">タイプ</div>
-          <p class="pt-2"><%= @room.room_type %></p>
-        </div>
-        <div>
-          <div class="fs-3">価額</div>
-          <p class="pt-2"><%= @room.price %>円</p>
-        </div>
-        <div>
-          <div class="fs-3">合計金額</div>
-          <p class="pt-2"><%= @total_amount %>円</p>
-        </div>
-      </div>
-    </div>
+  <table role="table" class="table booking-create">
+    <thead role="rowgroup">
+      <tr role="row">
+        <th role="columnheader">名前</th>
+        <th role="columnheader">チェックイン</th>
+        <th role="columnheader">チェックアウト</th>
+        <th role="columnheader">宿泊人数</th>
+        <th role="columnheader">部屋番号</th>
+        <th role="columnheader">部屋タイプ</th>
+        <th role="columnheader">部屋価額</th>
+        <th role="columnheader">合計金額</th>
+      </tr>
+    </thead>
+    <tbody role="rowgroup">
+      <tr role="row">
+        <th role="cell"><%= current_user.name %></th>
+        <td role="cell"><%= @startdate %></th>
+        <td role="cell"><%= @enddate %></td>
+        <td role="cell"><%= @people %>人</td>
+        <td role="cell"><%= @room.room_no %></td>
+        <td role="cell"><%= @room.room_type %></td>
+        <td role="cell"><%= @room.price %>円</td>
+        <td role="cell"><%= @total_amount %>円</td>
+      </tr>
+    </tbody>
+  </table>
     <div class="row pt-5">
       <div class="col-12 d-flex justify-content-center">
         <p class="fs-5 text-danger">内容を確認して予約してください。</p>
@@ -48,7 +42,7 @@
             <% if !@booking.errors.has_key?(:credit_no) %>
               <br>
             <% end %>
-            <%= f.number_field :credit_no, placeholder: "クレジット番号を入力してください", min: 1 %>
+            <%= f.number_field :credit_no, class: "form-control", placeholder: "クレジット番号を入力してください", min: 1 %>
           </div>
 
           <%= f.hidden_field :room_id, value: @room.id %>

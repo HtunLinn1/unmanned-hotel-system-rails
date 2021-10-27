@@ -3,6 +3,9 @@ class UsersController < ApplicationController
   before_action only: [:edit, :update, :destroy] do
     staff_check
   end
+  before_action only: [:show, :edit, :update, :destroy] do
+    login_user_check
+  end
 
   def show
     @user = User.find_by_id(params[:id])
@@ -39,6 +42,13 @@ class UsersController < ApplicationController
     def staff_check
       redirect_to root_path if current_user.staff
       flash[:notice] = "スタッフはできません！" if current_user.staff
+    end
+
+    def login_user_check
+      if params[:id] && current_user.id != params[:id].to_i
+        redirect_to root_url 
+        flash[:notice] = "ログインユーザーじゃない！"
+      end
     end
 
     def user_params
