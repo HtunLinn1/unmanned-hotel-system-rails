@@ -52,6 +52,11 @@ li {
   max-height: 50px;
   border-radius: 10px;
 }
+.user-pic {
+  max-width: 40px;
+  max-height: 40px;
+  border-radius: 10px;
+}
 header a {
   color: #fff;
 }
@@ -93,7 +98,7 @@ li a {
 }
 
 .user {
-  padding: 5px;
+  padding: 3px 3px 7px 7px;
   color: #d5a662;
   background-color: #fff;
   border-radius: 10px;

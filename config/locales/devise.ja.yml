@@ -32,6 +32,9 @@ ja:
               too_long: "は%{count}文字以下に設定して下さい。"
               invalid: "は有効でありません。"
               confirmation: "が内容とあっていません。"
+            picture:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません。"
         room:
           attributes:
             room_type:
@@ -88,7 +91,7 @@ ja:
         phone: "電話番号"
         password_confirmation: "確認用パスワード"
         remember_me: "次回から自動的にログイン"
-        image: "写真"
+        picture: "写真"
       room:
         room_type: "部屋タイプ"
         room_no: "部屋番号"

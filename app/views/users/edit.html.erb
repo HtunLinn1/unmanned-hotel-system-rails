@@ -41,6 +41,16 @@
               <div class="text-danger"><%= message %></div>
             <% end %>
           </div>
+          <div>
+            <%= f.label :picture, "写真" %>
+            <% if !@user.errors.has_key?(:picture) %>
+              <br>
+            <% end %>
+            <%= f.file_field :picture, class: "form-control" %>
+            <div class="text-danger">
+              <%= @user.errors.full_messages_for(:picture).join(', ') if @user.errors.has_key?(:picture) %>
+            </div>
+          </div>
           <div class="text-center pt-4">
             <%= f.submit %>
           </div>

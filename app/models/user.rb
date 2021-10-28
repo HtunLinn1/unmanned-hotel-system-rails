@@ -3,9 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
-
   validates :name, presence: true
   validates :phone, presence: true, length: {minimum: 11, maximum: 11}
+  validates :picture, presence: true
+  mount_uploader :picture, PictureUploader
 
   has_many :bookings, dependent: :destroy
   has_many :inquiries, dependent: :destroy

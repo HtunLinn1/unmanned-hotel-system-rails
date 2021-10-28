@@ -7,10 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 user = User.new(
   :name => 'staff',
-  :email => 'staff1@gmail.com',
+  :email => 'staff@gmail.com',
   :phone => '08012345678',
   :password => '12345678',
-  :staff => true
+  :staff => true,
+  :picture => File.open(Rails.root.join('public', 'images', 'hotel.jpg'))
 )
 user.skip_confirmation!
 user.save!
