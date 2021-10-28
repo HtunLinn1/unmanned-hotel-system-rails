@@ -48,13 +48,13 @@ li {
   float: left;
 }
 .hotel-logo {
-  max-width: 55px;
-  max-height: 50px;
+  width: 55px;
+  height: 50px;
   border-radius: 10px;
 }
 .user-pic {
-  max-width: 40px;
-  max-height: 40px;
+  max-width: 50px;
+  max-height: 50px;
   border-radius: 10px;
 }
 header a {
@@ -98,7 +98,7 @@ li a {
 }
 
 .user {
-  padding: 3px 3px 7px 7px;
+  padding: 3px 5px 7px 7px;
   color: #d5a662;
   background-color: #fff;
   border-radius: 10px;
@@ -179,7 +179,7 @@ only screen and (max-width: 1220px),
 	.bookings td:nth-of-type(2):before { content: "チェックアウト"; }
 	.bookings td:nth-of-type(3):before { content: "宿泊人数"; }
 	.bookings td:nth-of-type(4):before { content: "部屋番号"; }
-  .bookings td:nth-of-type(5):before { content: "部屋価額"; }
+  .bookings td:nth-of-type(5):before { content: "部屋単価"; }
 	.bookings td:nth-of-type(6):before { content: "合計金額"; }
 	.bookings td:nth-of-type(7):before { content: "暗証番号"; }
   .bookings td:nth-of-type(8):before { content: "credit_no"; }
@@ -222,7 +222,7 @@ only screen and (max-width: 1220px),
 	.booking-create td:nth-of-type(3):before { content: "宿泊人数"; }
 	.booking-create td:nth-of-type(4):before { content: "部屋番号"; }
   .booking-create td:nth-of-type(5):before { content: "部屋タイプ"; }
-	.booking-create td:nth-of-type(6):before { content: "部屋価額"; }
+	.booking-create td:nth-of-type(6):before { content: "部屋単価"; }
 	.booking-create td:nth-of-type(7):before { content: "合計金額"; }
 }
 

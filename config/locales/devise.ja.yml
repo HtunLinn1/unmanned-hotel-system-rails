@@ -95,7 +95,7 @@ ja:
       room:
         room_type: "部屋タイプ"
         room_no: "部屋番号"
-        price: "価額"
+        price: "価格"
         limit_person: "定員"
         image: "写真"
       booking:

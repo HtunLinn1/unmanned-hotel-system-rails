@@ -25,7 +25,7 @@
           <li class="nav-item text-center pt-2">
             <span class="user">
             <%= image_tag current_user.picture.url, class: "user-pic", alt: "room" %>
-            <%= link_to("#{current_user.name}", "/users/#{current_user.id}", method: :get) %>
+            <%= link_to("#{current_user.name}", "/users/#{current_user.id}", class: "fs-6", method: :get) %>
             </span>
           </li>
         <% end %>
