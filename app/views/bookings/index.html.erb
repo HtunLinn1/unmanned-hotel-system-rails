@@ -1,196 +1,196 @@
 <div class="container">
-<div class="bookings" style="padding-bottom: 450px; padding-top: 80px;">
-  <p class="fs-3 text-center">予約リスト</p>
-  <% if current_user.staff %>
-    <div class="mb-3">
-      <span>
-        <%= link_to("全員", bookings_path(:status => 'all'), class: 'btn btn-primary', method: :get) %>
-      </span>&nbsp;&nbsp;
-      <span style="position: relative;">
-        <%= link_to("未受取者", bookings_path(:status => 'notpaid'), class: 'btn btn-success', method: :get) %>
-        <div class="get-count" id="get-count"><%= @nopaid_count %></div>
-      </span>&nbsp;&nbsp;
-      <span style="position: relative;">
-        <%= link_to("キャンセル者", bookings_path(:status => 'cancel'), class: 'btn btn-danger', method: :get) %>
-        <div class="cancel-count" id="cancel-count"><%= @cancel_count %></div>
-      </span>
-    </div>
-  <% end %>
-  <% if notice %>
-    <div class="alert-success p-3">
-      <%= notice %>
-      <span class="closebtn float-end" onclick="this.parentElement.style.display='none';">&times;</span>
-    </div>
-  <% end %>
-  <% if alert %>
-    <div class="alert-danger pb-3 pt-3">
-      <%= alert %>
-      <span class="closebtn float-end" onclick="this.parentElement.style.display='none';">&times;</span>
-    </div>
-  <% end %>
-  <table role="table" class="table bookings" id="bookings">
-    <thead role="rowgroup">
-      <tr role="row">
-        <th role="columnheader">名前</th>
-        <th role="columnheader">チェックイン</th>
-        <th role="columnheader">チェックアウト</th>
-        <th role="columnheader">宿泊人数</th>
-        <th role="columnheader">部屋番号</th>
-        <th role="columnheader">部屋価額</th>
-        <th role="columnheader">合計金額</th>
-        <th role="columnheader">暗証番号</th>
-        <th role="columnheader">
-          クレジット番号
-        </th>
-        <th role="columnheader">
-          <% if !current_user.staff %>
-            キャンセル
-          <% else %>
-            受取
-          <% end %>
-        </th>
-        <th role="columnheader">
-          <% if !current_user.staff %>
-            クレジット更新
-          <% else %>
-            返金
-          <% end %>
-        </th>
-        <th role="columnheader">
-          <% if !current_user.staff %>
-            支払状況
-          <% else %>
-            受取状況
-          <% end %>
-        </th>
-        </th>
-      </tr>
-    </thead>
-    <tbody role="rowgroup">
-      <% @bookings.each do |booking| %>
-        <% if booking.cancle %>
-          <tr role="row" class="table-danger">
-            <th scope="row" class="fs-5"><%= booking.user.name %></th>
-            <td role="cell"><%= booking.start_date.strftime("%Y-%m-%d") %>  16:00</td>
-            <td role="cell"><%= booking.end_date.strftime("%Y-%m-%d") %> 11:00</td>
-            <td role="cell"><%= booking.person_count %></td>
-            <td role="cell"><%= booking.room.room_no %></td>
-            <td role="cell"><%= booking.room.price %></td>
-            <td role="cell"><%= booking.total_amount %></td>
-            <td role="cell"><%= booking.key %></td>
-            <td role="cell" id="credit-no"><%= booking.credit_no %></td>
-            <td role="cell">
-              <% if !current_user.staff %>
-                <% if !booking.paied %>
-                  <%= link_to("キャンセル", "bookings/#{booking.id}", class: 'text-danger', method: :delete, data: {confirm: "キャンセル？"}) %>
-                <% elsif booking.paied && !booking.cancle %>
-                  <%= link_to("キャンセル", "bookings/#{booking.id}/cancel",  class: 'text-danger', method: :patch, data: {confirm: "キャンセル？"}) %>
-                <% else %>
-                  <span class="text-secondary">キャンセル</span>
-                <% end %>
-              <% elsif current_user.staff && !booking.paied %>
-                <%= link_to("受取", "bookings/#{booking.id}/paid",  class: 'text-primary', method: :patch, data: {confirm: "受取？"}) %>
-              <% elsif current_user.staff && booking.paied %>
-                <div class="text-secondary">受取</div>
-              <% end %>
-            </td>
-            <td role="cell">
-              <% if !current_user.staff && !booking.paied %>
-                <%= link_to("クレジット更新", "bookings/#{booking.id}/edit", class: 'text-primary', method: :get) %>
-              <% elsif !current_user.staff && booking.paied %>
-                <span class="text-secondary">クレジット更新</span>
-              <% elsif current_user.staff && booking.cancle %>
-                <%= link_to("返金", "bookings/#{booking.id}/refund", class: 'text-primary', method: :delete, data: {confirm: "返金？"}) %>
-              <% end %>
-            </td>
-            <% if booking.paied %>
-              <% if !current_user.staff %>
-                <td role="cell" class="text-success">
-                  支払済
-                </td>
-              <% else %>
-                <td role="cell" class="text-success">
-                  受取済
-                </td >
-              <% end %>
+  <div class="bookings" style="padding-bottom: 553px; padding-top: 80px;">
+    <p class="fs-3 text-center">予約リスト</p>
+    <% if current_user.staff %>
+      <div class="mb-3">
+        <span>
+          <%= link_to("全員", bookings_path(:status => 'all'), class: 'btn btn-primary', method: :get) %>
+        </span>&nbsp;&nbsp;
+        <span style="position: relative;">
+          <%= link_to("未受取者", bookings_path(:status => 'notpaid'), class: 'btn btn-success', method: :get) %>
+          <div class="get-count" id="get-count"><%= @nopaid_count %></div>
+        </span>&nbsp;&nbsp;
+        <span style="position: relative;">
+          <%= link_to("キャンセル者", bookings_path(:status => 'cancel'), class: 'btn btn-danger', method: :get) %>
+          <div class="cancel-count" id="cancel-count"><%= @cancel_count %></div>
+        </span>
+      </div>
+    <% end %>
+    <% if notice %>
+      <div class="alert-success p-3">
+        <%= notice %>
+        <span class="closebtn float-end" onclick="this.parentElement.style.display='none';">&times;</span>
+      </div>
+    <% end %>
+    <% if alert %>
+      <div class="alert-danger pb-3 pt-3">
+        <%= alert %>
+        <span class="closebtn float-end" onclick="this.parentElement.style.display='none';">&times;</span>
+      </div>
+    <% end %>
+    <table role="table" class="table bookings" id="bookings">
+      <thead role="rowgroup">
+        <tr role="row">
+          <th role="columnheader">名前</th>
+          <th role="columnheader">チェックイン</th>
+          <th role="columnheader">チェックアウト</th>
+          <th role="columnheader">宿泊人数</th>
+          <th role="columnheader">部屋番号</th>
+          <th role="columnheader">部屋価額</th>
+          <th role="columnheader">合計金額</th>
+          <th role="columnheader">暗証番号</th>
+          <th role="columnheader">
+            クレジット番号
+          </th>
+          <th role="columnheader">
+            <% if !current_user.staff %>
+              キャンセル
             <% else %>
-              <% if !current_user.staff %>
-                <td role="cell" class="text-danger">
-                  未支払
-                </td>
-              <% else %>
-                <td role="cell" class="text-danger">
-                  未受取
-                </td>
-              <% end %>
+              受取
             <% end %>
-          </tr>
-        <% else %>
-          <tr role="row">
-            <th scope="row" class="fs-5"><%= booking.user.name %></th>
-            <td role="cell"><%= booking.start_date.strftime("%Y-%m-%d") %> 16:00</td>
-            <td role="cell"><%= booking.end_date.strftime("%Y-%m-%d") %> 11:00</td>
-            <td role="cell"><%= booking.person_count %></td>
-            <td role="cell"><%= booking.room.room_no %></td>
-            <td role="cell"><%= booking.room.price %></td>
-            <td role="cell"><%= booking.total_amount %></td>
-            <td role="cell"><%= booking.key %></td>
-            <td role="cell" id="credit-no"><%= booking.credit_no %></td>
-            <td role="cell">
-              <% if !current_user.staff %>
-                <% if !booking.paied && !booking.check_out %>
-                  <%= link_to("キャンセル", "bookings/#{booking.id}", class: 'text-danger', method: :delete, data: {confirm: "キャンセル？"}) %>
-                <% elsif booking.paied && !booking.cancle && !booking.check_out %>
-                  <%= link_to("キャンセル", "bookings/#{booking.id}/cancel",  class: 'text-danger', method: :patch, data: {confirm: "キャンセル？"}) %>
-                <% else %>
-                  <div class="text-secondary">キャンセル</div>
+          </th>
+          <th role="columnheader">
+            <% if !current_user.staff %>
+              クレジット更新
+            <% else %>
+              返金
+            <% end %>
+          </th>
+          <th role="columnheader">
+            <% if !current_user.staff %>
+              支払状況
+            <% else %>
+              受取状況
+            <% end %>
+          </th>
+          </th>
+        </tr>
+      </thead>
+      <tbody role="rowgroup">
+        <% @bookings.each do |booking| %>
+          <% if booking.cancle %>
+            <tr role="row" class="table-danger">
+              <th scope="row" class="fs-5"><%= booking.user.name %></th>
+              <td role="cell"><%= booking.start_date.strftime("%Y-%m-%d") %>  16:00</td>
+              <td role="cell"><%= booking.end_date.strftime("%Y-%m-%d") %> 11:00</td>
+              <td role="cell"><%= booking.person_count %></td>
+              <td role="cell"><%= booking.room.room_no %></td>
+              <td role="cell"><%= booking.room.price %></td>
+              <td role="cell"><%= booking.total_amount %></td>
+              <td role="cell"><%= booking.key %></td>
+              <td role="cell" id="credit-no"><%= booking.credit_no %></td>
+              <td role="cell">
+                <% if !current_user.staff %>
+                  <% if !booking.paied %>
+                    <%= link_to("キャンセル", "bookings/#{booking.id}", class: 'text-danger', method: :delete, data: {confirm: "キャンセル？"}) %>
+                  <% elsif booking.paied && !booking.cancle %>
+                    <%= link_to("キャンセル", "bookings/#{booking.id}/cancel",  class: 'text-danger', method: :patch, data: {confirm: "キャンセル？"}) %>
+                  <% else %>
+                    <span class="text-secondary">キャンセル</span>
+                  <% end %>
+                <% elsif current_user.staff && !booking.paied %>
+                  <%= link_to("受取", "bookings/#{booking.id}/paid",  class: 'text-primary', method: :patch, data: {confirm: "受取？"}) %>
+                <% elsif current_user.staff && booking.paied %>
+                  <div class="text-secondary">受取</div>
                 <% end %>
-              <% elsif current_user.staff && !booking.paied %>
-                <%= link_to("受取", "bookings/#{booking.id}/paid",  class: 'text-primary', method: :patch, data: {confirm: "受取？"}) %>
-              <% elsif current_user.staff && booking.paied %>
-                <div class="text-secondary">受取</div>
-              <% end %>
-            </td>
-            <td role="cell">
-              <% if !current_user.staff %>
-                <% if !booking.paied %>
+              </td>
+              <td role="cell">
+                <% if !current_user.staff && !booking.paied %>
                   <%= link_to("クレジット更新", "bookings/#{booking.id}/edit", class: 'text-primary', method: :get) %>
-                <% else %>
+                <% elsif !current_user.staff && booking.paied %>
                   <span class="text-secondary">クレジット更新</span>
+                <% elsif current_user.staff && booking.cancle %>
+                  <%= link_to("返金", "bookings/#{booking.id}/refund", class: 'text-primary', method: :delete, data: {confirm: "返金？"}) %>
+                <% end %>
+              </td>
+              <% if booking.paied %>
+                <% if !current_user.staff %>
+                  <td role="cell" class="text-success">
+                    支払済
+                  </td>
+                <% else %>
+                  <td role="cell" class="text-success">
+                    受取済
+                  </td >
+                <% end %>
+              <% else %>
+                <% if !current_user.staff %>
+                  <td role="cell" class="text-danger">
+                    未支払
+                  </td>
+                <% else %>
+                  <td role="cell" class="text-danger">
+                    未受取
+                  </td>
                 <% end %>
               <% end %>
-            </td>
-             <% if booking.paied %>
-              <% if !current_user.staff %>
-                <td role="cell" class="text-success">
-                  支払済
-                </td>
+            </tr>
+          <% else %>
+            <tr role="row">
+              <th scope="row" class="fs-5"><%= booking.user.name %></th>
+              <td role="cell"><%= booking.start_date.strftime("%Y-%m-%d") %> 16:00</td>
+              <td role="cell"><%= booking.end_date.strftime("%Y-%m-%d") %> 11:00</td>
+              <td role="cell"><%= booking.person_count %></td>
+              <td role="cell"><%= booking.room.room_no %></td>
+              <td role="cell"><%= booking.room.price %></td>
+              <td role="cell"><%= booking.total_amount %></td>
+              <td role="cell"><%= booking.key %></td>
+              <td role="cell" id="credit-no"><%= booking.credit_no %></td>
+              <td role="cell">
+                <% if !current_user.staff %>
+                  <% if !booking.paied && !booking.check_out %>
+                    <%= link_to("キャンセル", "bookings/#{booking.id}", class: 'text-danger', method: :delete, data: {confirm: "キャンセル？"}) %>
+                  <% elsif booking.paied && !booking.cancle && !booking.check_out %>
+                    <%= link_to("キャンセル", "bookings/#{booking.id}/cancel",  class: 'text-danger', method: :patch, data: {confirm: "キャンセル？"}) %>
+                  <% else %>
+                    <div class="text-secondary">キャンセル</div>
+                  <% end %>
+                <% elsif current_user.staff && !booking.paied %>
+                  <%= link_to("受取", "bookings/#{booking.id}/paid",  class: 'text-primary', method: :patch, data: {confirm: "受取？"}) %>
+                <% elsif current_user.staff && booking.paied %>
+                  <div class="text-secondary">受取</div>
+                <% end %>
+              </td>
+              <td role="cell">
+                <% if !current_user.staff %>
+                  <% if !booking.paied %>
+                    <%= link_to("クレジット更新", "bookings/#{booking.id}/edit", class: 'text-primary', method: :get) %>
+                  <% else %>
+                    <span class="text-secondary">クレジット更新</span>
+                  <% end %>
+                <% end %>
+              </td>
+              <% if booking.paied %>
+                <% if !current_user.staff %>
+                  <td role="cell" class="text-success">
+                    支払済
+                  </td>
+                <% else %>
+                  <td role="cell" class="text-success">
+                    受取済
+                  </td >
+                <% end %>
               <% else %>
-                <td role="cell" class="text-success">
-                  受取済
-                </td >
+                <% if !current_user.staff %>
+                  <td role="cell" class="text-danger">
+                    未支払
+                  </td>
+                <% else %>
+                  <td role="cell" class="text-danger">
+                    未受取
+                  </td>
+                <% end %>
               <% end %>
-            <% else %>
-              <% if !current_user.staff %>
-                <td role="cell" class="text-danger">
-                  未支払
-                </td>
-              <% else %>
-                <td role="cell" class="text-danger">
-                  未受取
-                </td>
-              <% end %>
-            <% end %>
-          </tr>
+            </tr>
+          <% end %>
         <% end %>
-      <% end %>
-    </tbody>
-  </table>
-  <%= paginate @bookings %>
-  <div class="row p-3">
-    <div class="col-12 text-start">
-      <%= link_to("ホーム", root_path, class: 'btn btn-primary', method: :get) %>
+      </tbody>
+    </table>
+    <%= paginate @bookings %>
+    <div class="row p-3">
+      <div class="col-12 text-start">
+        <%= link_to("ホーム", root_path, class: 'btn btn-primary', method: :get) %>
+      </div>
     </div>
   </div>
-</div>
 </div>

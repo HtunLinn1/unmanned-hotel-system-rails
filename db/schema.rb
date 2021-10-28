@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_21_070356) do
+ActiveRecord::Schema.define(version: 2021_10_28_065549) do
 
   create_table "bookings", force: :cascade do |t|
     t.integer "user_id"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2021_10_21_070356) do
     t.string "name"
     t.string "phone"
     t.boolean "staff", default: false
+    t.string "image"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

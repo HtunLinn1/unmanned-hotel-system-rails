@@ -1,4 +1,4 @@
-<div class="container-fluid pb-5" style="background-color: #f0f8ff;">
+<div class="container-fluid pb-5">
   <div class="row" style="padding-top: 100px;">
     <div class="col-12 d-flex justify-content-center">
       <h2>Forgot your password?</h2>
@@ -11,7 +11,7 @@
 
         <div class="field pb-2">
           <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email" %>
         </div>
 
         <div class="actions">
@@ -20,9 +20,10 @@
       <% end %>
     </div>
   </div>
-</div>
-<div class="row" style="padding-bottom: 290px;">
-  <div class="col-12 d-flex justify-content-center">
-    <%= render "devise/shared/links" %>
+  <div class="row" style="padding-bottom: 468px;">
+    <div class="col-12 d-flex justify-content-center">
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
 </div>
+

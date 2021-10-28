@@ -1,4 +1,4 @@
-<div class="container-fluid" style="background-color: #f0f8ff; padding-bottom: 263px;">
+<div class="container-fluid" style="background-color: #f0f8ff; padding-bottom: 369px;">
   <div class="container">
     <div class="row" style="padding-top: 90px;">
       <div class="col-12 d-flex justify-content-center">
@@ -16,7 +16,7 @@
             <% if !@user.errors.has_key?(:name) %>
               <br>
             <% end %>
-            <%= f.text_field :name %>
+            <%= f.text_field :name, class: "form-control" %>
             <% @user.errors.full_messages_for(:name).each do |message| %>
               <div class="text-danger"><%= message %></div>
             <% end %>
@@ -26,7 +26,7 @@
             <% if !@user.errors.has_key?(:email) %>
               <br>
             <% end %>
-            <%= f.text_field :email %>
+            <%= f.text_field :email, class: "form-control" %>
             <% @user.errors.full_messages_for(:email).each do |message| %>
               <div class="text-danger"><%= message %></div>
             <% end %>
@@ -36,7 +36,7 @@
             <% if !@user.errors.has_key?(:phone) %>
               <br>
             <% end %>
-            <%= f.text_field :phone %>
+            <%= f.text_field :phone, class: "form-control" %>
             <% @user.errors.full_messages_for(:phone).each do |message| %>
               <div class="text-danger"><%= message %></div>
             <% end %>

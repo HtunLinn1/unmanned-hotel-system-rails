@@ -88,6 +88,7 @@ ja:
         phone: "電話番号"
         password_confirmation: "確認用パスワード"
         remember_me: "次回から自動的にログイン"
+        image: "写真"
       room:
         room_type: "部屋タイプ"
         room_no: "部屋番号"
