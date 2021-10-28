@@ -15,9 +15,9 @@ class RoomsController < ApplicationController
 
       @rooms.each do |room|
         room.bookings.each do |booking|
-          if (booking.start_date <= @startdate && @startdate < booking.end_date) ||
-             (booking.start_date <= @enddate && @enddate <= booking.end_date) ||
-             (@startdate <= booking.start_date && booking.end_date <= @enddate  )
+          if (booking.start_date <= @startdate && @startdate < booking.end_date && !booking.cancle) ||
+             (booking.start_date <= @enddate && @enddate <= booking.end_date && !booking.cancle) ||
+             (@startdate <= booking.start_date && booking.end_date <= @enddate && !booking.cancle )
             @booked_roomids << room.id
           end
         end

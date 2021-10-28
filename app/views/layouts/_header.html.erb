@@ -9,7 +9,7 @@
       </div>
     </div>
     <!-- トグルボタン -->
-    <button class="navbar-toggler pr-5"
+    <button class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#navbarNav"
@@ -65,8 +65,10 @@
               <%= link_to("ログアウト", "/users/sign_out", method: :delete, data: {confirm: "本当にログアウトしますか？"}) %>
             </li>
           <% else %>
-            <li class="nav-item pt-2">
+            <li class="nav-item pt-2 text-center">
               <%= link_to("アカウント作成", "/users/sign_up") %>
+            </li>
+            <li class="nav-item pt-2 text-center">
               <%= link_to("ログイン", "/users/sign_in") %>
             </li>
           <% end %>

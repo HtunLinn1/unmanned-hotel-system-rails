@@ -54,9 +54,9 @@ class BookingsController < ApplicationController
     end
 
     @room.bookings.each do |booking|
-      if (booking.start_date <= @startdate && @startdate < booking.end_date) ||
-         (booking.start_date <= @enddate && @enddate <= booking.end_date) ||
-         (@startdate <= booking.start_date && booking.end_date <= @enddate  )
+      if (booking.start_date <= @startdate && @startdate < booking.end_date && !booking.cancle) ||
+         (booking.start_date <= @enddate && @enddate <= booking.end_date && !booking.cancle) ||
+         (@startdate <= booking.start_date && booking.end_date <= @enddate && !booking.cancle)
 
         flash[:notice] = "#{@startdate}と#{@enddate}間に選んだ部屋は予約できないです!"
         redirect_to root_path
