@@ -19,7 +19,7 @@ class BookingsController < ApplicationController
         @bookings = Booking.where(check_out: false).page(params[:page]).per(5).order('start_date ASC')
       end
       @cancel_count = Booking.where(cancle: true).count
-      @nopaid_count = Booking.where(paied: false).count
+      @nopaid_count = Booking.where(paied: false, check_out: false).count
     else
       user = User.find_by_id(current_user.id)
       @bookings = user.bookings.page(params[:page]).per(5).order('start_date ASC')

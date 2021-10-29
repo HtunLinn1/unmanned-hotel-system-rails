@@ -8,11 +8,15 @@
         </span>&nbsp;&nbsp;
         <span style="position: relative;">
           <%= link_to("未受取者", bookings_path(:status => 'notpaid'), class: 'btn btn-success', method: :get) %>
-          <div class="get-count" id="get-count"><%= @nopaid_count %></div>
+          <% if @nopaid_count > 0 %>
+            <div class="get-count" id="get-count"><%= @nopaid_count %></div>
+          <% end %>
         </span>&nbsp;&nbsp;
         <span style="position: relative;">
           <%= link_to("キャンセル者", bookings_path(:status => 'cancel'), class: 'btn btn-danger', method: :get) %>
-          <div class="cancel-count" id="cancel-count"><%= @cancel_count %></div>
+          <% if @cancel_count > 0 %>
+            <div class="cancel-count" id="cancel-count"><%= @cancel_count %></div>
+          <% end %>
         </span>
       </div>
     <% end %>
