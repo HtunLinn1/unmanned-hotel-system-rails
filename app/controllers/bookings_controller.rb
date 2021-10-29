@@ -14,7 +14,7 @@ class BookingsController < ApplicationController
       if params[:status] == 'cancel'
         @bookings = Booking.where(cancle: true).page(params[:page]).per(5).order('start_date ASC')
       elsif params[:status] == 'notpaid'
-        @bookings = Booking.where(paied: false).page(params[:page]).per(5).order('start_date ASC')
+        @bookings = Booking.where(paied: false, check_out: false).page(params[:page]).per(5).order('start_date ASC')
       else
         @bookings = Booking.where(check_out: false).page(params[:page]).per(5).order('start_date ASC')
       end
